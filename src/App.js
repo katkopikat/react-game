@@ -1,4 +1,6 @@
+import React from 'react';
 import './App.css';
+import Grid from './components/grid';
 
 function App() {
   return (
@@ -7,7 +9,9 @@ function App() {
         <h1>
           Sudoku
         </h1>
+        <Grid/>
       </header>
+      
     </div>
   );
 }

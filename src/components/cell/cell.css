@@ -1,0 +1,15 @@
+/* .cell {
+    background-color: aliceblue;
+} */
+
+.cell-input{
+    height: 45px;
+    width: 45px;
+    text-align: center;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

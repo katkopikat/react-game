@@ -3,13 +3,39 @@
 } */
 
 .cell-input{
-    height: 45px;
-    width: 45px;
+    height: 47px;
+    width: 47px;
+    font-size: 20px;
     text-align: center;
+    border: none;
+    -webkit-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.27) inset;
+    -moz-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.27) inset;
+    box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.27) inset;
+}
+
+.cell-input:hover{
+    cursor: pointer;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.selected{
+    background-color:rgb(221, 220, 220);
+}
+
+.sub-selected{
+    background-color:rgb(248, 196, 196);
+}
+
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+input[readonly]{
+    pointer-events: none;
 }

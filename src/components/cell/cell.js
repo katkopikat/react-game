@@ -47,17 +47,16 @@ export default function Cell(props){
           type="number"
           className="cell-input"
           readonly={readonly}
-          // value={props.value}
           x={x}
           y={y}
           key={id}
           value={number}
-          //solved={solved}
           selectedCell={selected}
           onFocus={ (e) => {setColorSelected(e)}}
           onBlur={ (e) => {setColorUnselected(e)}}
           onKeyDown={ (e) => {pressNumber(e)}}
           onChange={changeValue}
+          onClick={ (e) => {props.onSelectCell(e.target)}}
           />
       );
 }

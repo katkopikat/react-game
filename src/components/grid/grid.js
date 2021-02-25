@@ -21,83 +21,63 @@ import './grid.css';
 // selectedArea = (cell) =>{
 
 // }
-function BaseGrid(props){
-    const baseString = '123000000000070000000000000000000000000000000000080000000000000000000000000000087';
-    const startGrid = baseString
-                            .split('')
-                            .filter(x => '0123456789'.includes(x))
-                            .map(x => Number(x))
-                            //console.log(startGrid-1)
-    //const {difficulty} = props;
+// function BaseGrid(props){
+//     // const baseString = '123000000000070000000000000000000000000000000000080000000000000000000000000000087';
+//     // const startGrid = baseString
+//     //                         .split('')
+//     //                         .filter(x => '0123456789'.includes(x))
+//     //                         .map(x => Number(x))
 
-    // getPotentials(){
-    //     const potentails = [];
-
-    // }
-
-    let idCount = 1;
-    const baseField = [];
-    for (let x = 0; x < 9; x++ ){
-        for (let y = 0; y < 9; y++ ){
-            console.log(typeof(startGrid[idCount-1]))
-            let prop = {
-                x,
-                y,
-                id: idCount,
-                value: startGrid[idCount-1],
-                readOnly: !startGrid[idCount-1] ? true : ''
-            }
-            baseField.push(prop)  
-            idCount++;
-        }
-    }
-    // console.log(baseField)
-    return (baseField.map(cell => <Cell x={cell.x+1} y={cell.y+1} key={cell.id} value={cell.value} readOnly={cell.readOnly}/>))
-}
 
 
 export default function Grid(props){
-    const {difficulty} = props;
+    
+    const {difficulty, sudokuArray} = props;
     const [grid, setGrid] = useState(null);
     const [selRaw, setSelectedRaw] = useState(null);
     const [selCol, setSelectedCol] = useState(null);
     const [sel, setSelected] = useState(null);
 
-    const updateSelection = (value) => {
-        setSelected(value);
-     }
-
-    //  const baseField = [];
-    //  for (let x = 0; x < 9; x++ ){
-    //      for (let y = 0; y < 9; y++ ){
-    //          baseField.push({x, y})  
-    //      }
-    //  }
-
+ 
+    let idCount = 1;
+    const baseField = [];
+    for (let x = 0; x < 9; x++ ){
+        for (let y = 0; y < 9; y++ ){
+            let prop = {
+                x,
+                y,
+                id: idCount,
+                value: sudokuArray[idCount-1],
+                readOnly: !sudokuArray[idCount-1] ? true : ''
+            }
+            baseField.push(prop)  
+            idCount++;
+        }
+    }
      useEffect(() => {
-        console.log(sel)
-  
-        //let f = field.filter(cell => cell.x === sel)
-        //console.log(f)//.map((item) => { item.className='cell-input sub-selected'});
+         if(sel){
+           document.querySelectorAll('.sub-selected').forEach(it => it.className='cell-input');
+
+           let row = document.querySelectorAll(`input[x="${sel.getAttribute('x')}"]`).forEach(it => it.className='cell-input sub-selected');
+           let col = document.querySelectorAll(`input[y="${sel.getAttribute('y')}"]`).forEach(it => it.className='cell-input sub-selected');
+         }
      }, [sel]);
 
+    const onSelectCell = (val) => {
+        setSelected(val);
+    }
 
-    // const selectedCol = (e) => {
-    //     const cell = e.target
-    //     if(cell.selected){
-    //         console.log('выделена')
-    //     }
-    // }
-        
-       //baseField.filter((cell.y) =>  cell.className='selected sub-selected')
-   
+  
 
-//    useEffect(() => {
-//     console.log(selectedCell)
-//     //console.log(x)
-//     //props.selectedCell
-// });
+    return (  baseField.map(cell => 
+        <Cell
+             x={cell.x+1}
+             y={cell.y+1}
+             key={cell.id}
+             value={cell.value}
+             readOnly={cell.readOnly}
+             onSelectCell={onSelectCell}
+        />)
 
-    //i%9+1
-    return <BaseGrid difficulty={difficulty}/>
+    )
 }

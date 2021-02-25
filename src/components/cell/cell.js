@@ -2,34 +2,29 @@ import React, { useState, useEffect } from 'react';
 import './cell.css'
 
 export default function Cell(props){
-    let {x, y, id, value, readonly} = props;  //updateSelection
+    let {x, y, s, id, value, readOnly, selectedRow, selecredCol, currentValues } = props;
     const [selected, setSelected] = useState(false);
 
     const [number, setUserNumber] = useState(value || '');
+    const [errorStatus, setErrorStatus] = useState(false);
 
- 
     const setColorSelected = (e) =>{
-       if(!readonly){
+    //   if(!readOnly){
         setSelected(true);
-        e.target.className='cell-input selected'
-        }
-    }
+        e.target.classList.add('selected');
 
-    // useEffect(() => {
-    //     updateSelection(x)
-    //     // props.selectedCell = x;
-    //     // console.log(props.x)
-    //      //props.selectedCell
-    //  }, [selected]);
+        //e.target.className='cell-input selected'
+       // }
+    }
     
     const setColorUnselected = (e) =>{
         setSelected(false);
         e.target.className='cell-input'
         changeValue(e.target);
-        //e.target.value = number;
     }
 
     const pressNumber = e => {  
+        
            //e.preventDefault();
             if(String(e.target.value).length<1){
                setUserNumber(e.key);
@@ -38,17 +33,35 @@ export default function Cell(props){
         }
     }
 
+
+
     const changeValue = (cell) => {
        cell.value = number || '';
+
+       if(cell.value && (currentValues.includes(cell.value))){
+           setErrorStatus(true);
+       } else {
+            setErrorStatus(false);
+       }
+
+
+        if (errorStatus) cell.classList.add('error');
+        // else if (cell.value && !errorStatus) {
+        //     if (cell.classList.contains('error')){
+        //         cell.classList.remove('error')
+        //     }
+            
+        // }
     }
 
     return (
           <input
           type="number"
           className="cell-input"
-          readonly={readonly}
+         // readOnly={readOnly}
           x={x}
           y={y}
+          s={s}
           key={id}
           value={number}
           selectedCell={selected}
@@ -57,6 +70,7 @@ export default function Cell(props){
           onKeyDown={ (e) => {pressNumber(e)}}
           onChange={changeValue}
           onClick={ (e) => {props.onSelectCell(e.target)}}
+          error={errorStatus}
           />
       );
 }

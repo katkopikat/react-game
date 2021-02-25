@@ -28,7 +28,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .sub-selected{
-    background-color:rgb(248, 196, 196);
+    background-color:#ffd036
 }
 
 :active, :hover, :focus {
@@ -38,4 +38,12 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input[readonly]{
     pointer-events: none;
+}
+
+.error{
+    background-color: #ffaabf;
+}
+
+input[s='2'], input[s='4'], input[s='6'], input[s='8']{
+    opacity: 0.9;
 }

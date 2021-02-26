@@ -3,24 +3,6 @@ import Cell from '../cell';
 import './grid.css';
 
 
-// export default class Sudoku extends Component{
-//     state = {
-//        field = []
-//       } 
-// }
-
-// selectedRow = (cell) => {
-//     const { field } = this.state;
-//     const row = [];
-//     row.push()
-//     return row;
-// }
-
-
-
-// selectedArea = (cell) =>{
-
-// }
 // function BaseGrid(props){
 //     // const baseString = '123000000000070000000000000000000000000000000000080000000000000000000000000000087';
 //     // const startGrid = baseString
@@ -33,12 +15,13 @@ import './grid.css';
 export default function Grid(props){
     
     const {difficulty, sudokuArray} = props;
-    const [grid, setGrid] = useState(null);
+
+    const [fieldArray, setField] = useState(sudokuArray);
+
     const [selRow, setSelectedRow] = useState(null);
     const [selCol, setSelectedCol] = useState(null);
     const [selSegm, setSelectedSegmnent] = useState(null);
     const [selectedCell, setSelected] = useState(null);
-   // const [currentValueInRow, setValueInRow] = useState([]);
     const [currentValues, setValues] = useState([]);
 
  
@@ -50,8 +33,8 @@ export default function Grid(props){
                 x,
                 y,
                 s: parseInt(y / 3) * 3 + parseInt(x / 3),
-                id: idCount,
-                value: sudokuArray[idCount-1],
+                id: idCount-1,
+                value: String(sudokuArray[idCount-1]),
                // readOnly: !sudokuArray[idCount-1] ? true : ''
             }
             baseField.push(prop)  
@@ -75,44 +58,36 @@ export default function Grid(props){
 
            setSelectedRow(rowElements)
            setSelectedCol(colElements)
-           setSelectedSegmnent(segmElements)
+           setSelectedSegmnent(segmElements)  
          }
      }, [selectedCell]);
 
 
      useEffect(() => {
-        // let tempRow = [];
-        // let tempCol = [];
-
         let values = [];
-
 
         if(selRow){
           [...selRow, ...selCol, ...selSegm].forEach(it => {
               it.classList.add('sub-selected');
-              if(it.value){
-                values.push(it.value);
-              }
-        });
-
-        //   selCol.forEach(it => {
-        //     it.classList.add('sub-selected');
-        //       if(it.value){
-        //       tempCol.push(it.value);
-        //       }
-        //   })
-
-          
+              if(it.value) values.push(it.value);
+            });
         }
-        //console.log(values)
-        setValues([...values])
-       // setValueInCol(...tempCol)
 
+        setValues([...values])
+        console.log([...values])
     }, [selRow, selCol, selSegm]);
 
 
     const onSelectCell = (val) => {
         setSelected(val);
+    }
+
+    const setValueInFieldArray = (id, value) => {
+        let tempArr = [...fieldArray];
+        fieldArray[id] = value;
+       // console.log(`id:${id} Значение: ${fieldArray[id]}`)
+       // console.log(tempArr)
+        setField(tempArr);
     }
 
     return (  baseField.map(cell => 
@@ -121,13 +96,12 @@ export default function Grid(props){
              y={cell.y+1}
              s={cell.s+1}
              key={cell.id}
-             value={cell.value}
+             id={Number(cell.id)}
+             value={String(cell.value)}
            //  readOnly={cell.readOnly}
-             onSelectCell={onSelectCell}
-            // selectedRow={selRow}
-             //selecredCol={selCol}
-            // currentValueInRow={currentValueInRow}
-            currentValues={currentValues}
+           currentValues={currentValues}
+            onSelectCell={onSelectCell}
+            setValueInFieldArray={setValueInFieldArray}
         />)
 
     )

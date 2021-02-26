@@ -7,20 +7,31 @@ import Timer from './components/timer';
 
 
 const sudokuArray = [
-  0, 0, 7, 5, 8, 9, 1, 0, 0,
-  0, 0, 0, 0, 2, 0, 0, 0, 0, 
-  8, 9, 0, 0, 0, 0, 0, 5, 6,
-  0, 2, 0, 3, 0, 8, 0, 6, 0,
-  0, 1, 0, 0, 0, 0, 0, 9, 0, 
-  0, 3, 0, 2, 0, 5, 0, 4, 0, 
-  9, 4, 0, 0, 0, 0, 0, 2, 7,
-  0, 0, 0, 0, 6, 0, 0, 0, 0, 
-  0, 0, 6, 4, 7, 2, 9, 0, 0, 
+  '', '', 7, 5, 8, 9, 1, '', '',
+  '', '', '', '', 2, '', '', '', '', 
+  8, 9, '', '', '', '', '', 5, 6,
+  '', 2, '', 3, '', 8, '', 6, '',
+  '', 1, '', '', '', '', '', 9, '', 
+  '', 3, '', 2, '', 5, '', 4, '', 
+  9, 4, '', '', '', '', '', 2, 7,
+  '', '', '', '', 6, '', '', '', '', 
+  '', '', 6, 4, 7, 2, 9, '', '', 
 ]
 
+const setData = (field, time) => {
+  window.addEventListener('unload', function(event) {
+
+    localStorage.setItem('sudoku', `Сохраненная игра + ${new Date().getSeconds()}`)
+  });
+
+  document.addEventListener("visibilitychange", function() {
+
+  })
+}
 
 
 function App() {
+
   const [startNemGame, setStartedGame] = useState(false);
   const [gameStatus, setGameStatus] = useState('not-started'); // not-startded --> paused --> process
 

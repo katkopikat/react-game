@@ -1,0 +1,15 @@
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    text-align: left;
+}
+
+.menu-btn {
+    width: auto;
+}
+
+.ant-btn-primary, .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: #e9bf36;
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import './timer.css'
 
 
 export default function Timer (props){
@@ -75,8 +76,8 @@ export default function Timer (props){
 
   
       return (
-        <div>
+        <button className="wrapper-timer">
             <span className="timer">{timerText}</span>
-        </div>
+        </button>
   )
 }

@@ -17,6 +17,7 @@ export default function Grid(props){
     const {difficulty, sudokuArray} = props;
 
     const [fieldArray, setField] = useState(sudokuArray);
+    //const [field, setDOMfield] = useState(sudokuArray);
 
     const [selRow, setSelectedRow] = useState(null);
     const [selCol, setSelectedCol] = useState(null);
@@ -82,24 +83,24 @@ export default function Grid(props){
         setSelected(val);
     }
 
+    // TO DO! ERROR НЕ ПЕРЕДАЕТСЯ ЗНАЧЕНИЕ
     const setValueInFieldArray = (id, value) => {
+      //console.log(`id:${id} Значение: ${value}`)
         let tempArr = [...fieldArray];
         fieldArray[id] = value;
-       // console.log(`id:${id} Значение: ${fieldArray[id]}`)
-       // console.log(tempArr)
         setField(tempArr);
     }
 
     return (  baseField.map(cell => 
         <Cell
-             x={cell.x+1}
-             y={cell.y+1}
-             s={cell.s+1}
-             key={cell.id}
-             id={Number(cell.id)}
-             value={String(cell.value)}
+            x={cell.x+1}
+            y={cell.y+1}
+            s={cell.s+1}
+            key={cell.id}
+            id={Number(cell.id)}
+            value={String(cell.value)}
            //  readOnly={cell.readOnly}
-           currentValues={currentValues}
+            currentValues={currentValues}
             onSelectCell={onSelectCell}
             setValueInFieldArray={setValueInFieldArray}
         />)

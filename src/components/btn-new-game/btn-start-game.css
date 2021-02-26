@@ -1,0 +1,14 @@
+.new-game-btn, .pause-btn, .wrapper-timer {
+    text-transform: none;
+    height: 32px;
+    font-size: 18px;
+    background-color: #e9bf36;
+    width: 130px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-bottom: 4px;
+    color: black;
+    margin-bottom: 10px;
+}

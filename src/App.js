@@ -4,19 +4,11 @@ import Grid from './components/grid';
 import NewGameBtn from './components/btn-new-game';
 import PauseGameBtn from "./components/btn-pause-game";
 import Timer from './components/timer';
+import Game from './components/game';
+import Menu from './components/menu/menu';
 
 
-const sudokuArray = [
-  '', '', 7, 5, 8, 9, 1, '', '',
-  '', '', '', '', 2, '', '', '', '', 
-  8, 9, '', '', '', '', '', 5, 6,
-  '', 2, '', 3, '', 8, '', 6, '',
-  '', 1, '', '', '', '', '', 9, '', 
-  '', 3, '', 2, '', 5, '', 4, '', 
-  9, 4, '', '', '', '', '', 2, 7,
-  '', '', '', '', 6, '', '', '', '', 
-  '', '', 6, 4, 7, 2, 9, '', '', 
-]
+
 
 const setData = (field, time) => {
   window.addEventListener('unload', function(event) {
@@ -33,41 +25,31 @@ const setData = (field, time) => {
 function App() {
 
   const [startNemGame, setStartedGame] = useState(false);
-  const [gameStatus, setGameStatus] = useState('not-started'); // not-startded --> paused --> process
+  const [gameIsStarted, setGameISStarted] = useState(false);
 
-  const startNewGame = () => {
+  const [statusField, setStatusField] = useState([]);
+  // const [gameStatus, setGameStatus] = useState('not-started'); // not-startded --> paused --> process
+
+  const onStartNewGame = () => {
     setStartedGame(true);
-    setGameStatus('process');
-    // console.log('status?', gameStatus)
-   //  console.log('startNewGame в Апп передали в чайлд')
+    // setGameStatus('process');
+    // setGameISStarted(true);
  }
 
- const pauseGame = () => {
-   if(gameStatus === 'process') setGameStatus('paused');
-   else if(gameStatus === 'paused') setGameStatus('process');
-   else setGameStatus('paused');
- }
+//  const pauseGame = () => {
+//    if(gameStatus === 'process') setGameStatus('paused');
+//    else if(gameStatus === 'paused') setGameStatus('process');
+//    else setGameStatus('paused');
+//  }
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>
-          Sudoku
-        </h1>
-        <NewGameBtn
-         onStartNewGame={startNewGame}
-         />
-         <PauseGameBtn
-         onPauseGame={pauseGame}
-         gameStatus={gameStatus}/>
-         <Timer
-          gameStatus={gameStatus}
-          />
-        <div className="game-grid">
-          <Grid difficulty={30} sudokuArray={sudokuArray}/>
-        </div>
+      <Menu onStartNewGame={onStartNewGame} />
+        <h1 className="main-heading"> Sudoku </h1>
+        {startNemGame ? null : <NewGameBtn onStartNewGame={onStartNewGame}/>}
+        {startNemGame ? <Game/> : null}
       </header>
-      
     </div>
   );
 }

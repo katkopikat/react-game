@@ -15,7 +15,7 @@ import randomGeneratedField from './randomGenerated';
 
 
 export default function Grid(props){
-    const {difficulty} = props;
+    const {difficulty, finishedGame} = props;
     const loadGame = Object.values(JSON.parse(localStorage.getItem('sudoku')));
 
     const [selRow, setSelectedRow] = useState(null);
@@ -83,7 +83,10 @@ export default function Grid(props){
         setCurrentField(arr)
 
         let isFinisfedGame = currentField.filter((el) => { return el.error || !el.value}).length;
-        if(!isFinisfedGame) console.log('Игра закончена')
+        if(!isFinisfedGame) {
+            console.log('Игра закончена')
+            finishedGame(true);
+        }
 
     }
 

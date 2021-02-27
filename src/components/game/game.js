@@ -22,6 +22,9 @@ import './game.css'
 //let sudokuArray = Array(1,2,3,4,6,7,5,8,9).sort(function() {return 0.5 - Math.random()});
 //console.log(sudokuArray)
 
+
+
+
 export default function Game(props) {
   const { setGameStatus, gameStatus } = props;
     //const [gameStatus, setGameStatus] = useState('not-started'); 
@@ -33,8 +36,6 @@ export default function Game(props) {
 
         console.log(gameStatus)
     }
-
-
 
     return (
         <div>

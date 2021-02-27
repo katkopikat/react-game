@@ -8,36 +8,29 @@ import Difficulty from './components/btns-difficulty/btns-dificulty'
 
 
 
-const setData = (field, time) => {
-  window.addEventListener('unload', function(event) {
+// const setData = (field, time) => {
+//   window.addEventListener('unload', function(event) {
 
-    localStorage.setItem('sudoku', `Сохраненная игра + ${new Date().getSeconds()}`)
-  });
+//     localStorage.setItem('sudoku', `Сохраненная игра + ${new Date().getSeconds()}`)
+//   });
 
-  document.addEventListener("visibilitychange", function() {
+//   document.addEventListener("visibilitychange", function() {
 
-  })
-}
+//   })
+// }
 
 
 function App() {
 
   const [startNemGame, setStartedGame] = useState(false);
-  const [gameIsStarted, setGameISStarted] = useState(false);
-
-  const [statusField, setStatusField] = useState([]);
-
+  // const [gameIsStarted, setGameISStarted] = useState(false);
+  // const [statusField, setStatusField] = useState([]);
   const [difficulty, setDifficulty] = useState('medium');
-
-  const [gameStatus, setStatus] = useState('non-started');
-  // const [gameStatus, setGameStatus] = useState('not-started'); // not-startded --> paused --> process
+  const [gameStatus, setStatus] = useState('non-started'); // not-startded --> paused --> process
 
   const onStartNewGame = () => {
     setStartedGame(true);
     setStatus('process');
-
-   
-    // setGameISStarted(true);
  }
 
  const setGameStatus= (status) => {
@@ -47,15 +40,6 @@ function App() {
  const onChooseDifficulty = (val) => {
     setDifficulty(val)
  }
-
-
-//  const pauseGame = () => {
-//    if(gameStatus === 'process') setGameStatus('paused');
-//    else if(gameStatus === 'paused') setGameStatus('process');
-//    else setGameStatus('paused');
-//  }
-
-console.log(gameStatus)
 
   return (
     <div className="App">

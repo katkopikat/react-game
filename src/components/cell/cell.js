@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './cell.css'
 
 export default function Cell(props){
-    let {x, y, s, id, value, readOnly, currentValues, setValueInCurruentField, onSelectCell, hasError } = props;
+    let {x, y, s, id, value, readOnly, startValue, currentValues, setValueInCurruentField, onSelectCell, hasError } = props;
  
 
     const [selected, setSelected] = useState(false);
@@ -61,13 +61,15 @@ export default function Cell(props){
           <input
           type="number"
           className="cell-input"
+         // startValue={startValue}
           x={x}
           y={y}
           s={s}
           id={id}
           key={id}
           value={String(numberValue)}
-         // readOnly={readOnly}
+          readOnly={readOnly}
+         
           selectedCell={selected}
 
           onFocus={ (e) => {setColorSelected(e);

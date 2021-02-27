@@ -1,4 +1,4 @@
-.new-game-btn, .pause-btn, .wrapper-timer {
+.new-game-btn, .pause-btn, .wrapper-timer, .difficulty-btn {
     text-transform: none;
     height: 32px;
     font-size: 18px;
@@ -11,4 +11,8 @@
     padding-bottom: 4px;
     color: black;
     margin-bottom: 10px;
+}
+
+.difficulty-btn{
+    margin: 10px;
 }

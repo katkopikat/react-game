@@ -1,11 +1,9 @@
-import React, { useState, useEffect }from 'react';
+import React, { useState }from 'react';
 import './App.css';
-import Grid from './components/grid';
 import NewGameBtn from './components/btn-new-game';
-import PauseGameBtn from "./components/btn-pause-game";
-import Timer from './components/timer';
 import Game from './components/game';
 import Menu from './components/menu/menu';
+import Difficulty from './components/btns-difficulty/btns-dificulty'
 
 
 
@@ -28,12 +26,18 @@ function App() {
   const [gameIsStarted, setGameISStarted] = useState(false);
 
   const [statusField, setStatusField] = useState([]);
+
+  const [difficulty, setDifficulty] = useState('medium');
   // const [gameStatus, setGameStatus] = useState('not-started'); // not-startded --> paused --> process
 
   const onStartNewGame = () => {
     setStartedGame(true);
     // setGameStatus('process');
     // setGameISStarted(true);
+ }
+
+ const onChooseDifficulty = (val) => {
+    setDifficulty(val)
  }
 
 //  const pauseGame = () => {
@@ -48,7 +52,8 @@ function App() {
       <Menu onStartNewGame={onStartNewGame} />
         <h1 className="main-heading"> Sudoku </h1>
         {startNemGame ? null : <NewGameBtn onStartNewGame={onStartNewGame}/>}
-        {startNemGame ? <Game/> : null}
+        {startNemGame ? null : <Difficulty onChooseDifficulty={onChooseDifficulty}/>}
+        {startNemGame ? <Game difficulty={difficulty}/> : null}
       </header>
     </div>
   );

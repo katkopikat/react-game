@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Cell from '../cell';
 import './grid.css';
+import randomGeneratedField from './randomGenerated';
+
 
 
 // function BaseGrid(props){
@@ -13,44 +15,27 @@ import './grid.css';
 
 
 export default function Grid(props){
-    
     const {difficulty} = props;
 
-    const [fieldArray, setField] = useState([]);
-    //const [field, setDOMfield] = useState(sudokuArray);
 
     const [selRow, setSelectedRow] = useState(null);
     const [selCol, setSelectedCol] = useState(null);
     const [selSegm, setSelectedSegmnent] = useState(null);
     const [selectedCell, setSelected] = useState(null);
     const [currentValues, setValues] = useState([]);
+    const [startField, setStartField] = useState([]);
+    const [currentField, setCurrentField] = useState([]);
 
- 
-    let idCount = 1;
-    const baseField = [];
-    let field = '0681594327597283416342671589934157268278936145156842973729318654813465792465729831';
-    let sudokuArray = Array(1,2,3,4,6,7,5,8,9).sort(function() {return 0.5 - Math.random()});
-    for (let y = 0; y < 9; y++ ){
-        for (let x = 0; x < 9; x++ ){
-            let prop = {
-                x,
-                y,
-                s: parseInt(y / 3) * 3 + parseInt(x / 3),
-                id: idCount-1,
-               // value: String(sudokuArray[idCount-1]),
-               value: (Math.random()*10>6) ? +sudokuArray[field.substr(idCount,1)-1] : ''
-               // readOnly: !sudokuArray[idCount-1] ? true : ''
-            }
-            baseField.push(prop)  
-            idCount++;
-        }
-    }
+    useEffect(()=>{
+        let obj = randomGeneratedField(difficulty);
+        setStartField(obj.baseField);
+        setCurrentField(obj.startArray);
+    },[]) 
 
     const findElementInDOM = (attr) => {
         const findAttr = selectedCell.getAttribute(`${attr}`);
         return document.querySelectorAll(`input[${attr}="${findAttr}"]`);
     }
-
 
      useEffect(() => {
          if(selectedCell){
@@ -78,7 +63,6 @@ export default function Grid(props){
         }
 
         setValues([...values])
-        console.log([...values])
     }, [selRow, selCol, selSegm]);
 
 
@@ -86,15 +70,15 @@ export default function Grid(props){
         setSelected(val);
     }
 
-    // TO DO! ERROR НЕ ПЕРЕДАЕТСЯ ЗНАЧЕНИЕ
-    const setValueInFieldArray = (id, value) => {
-      //console.log(`id:${id} Значение: ${value}`)
-        let tempArr = [...fieldArray];
-        fieldArray[id] = value;
-        setField(tempArr);
+    const setValueInCurruentField = (id, value) => {
+        let arr = [...currentField]
+        arr.splice(id, 1, value);
+        setCurrentField(arr)
     }
 
-    return (  baseField.map(cell => 
+    console.log(currentField)
+
+    return ( startField.map(cell => 
         <Cell
             x={cell.x+1}
             y={cell.y+1}
@@ -102,10 +86,10 @@ export default function Grid(props){
             key={cell.id}
             id={Number(cell.id)}
             value={String(cell.value)}
-           //  readOnly={cell.readOnly}
+            readOnly={cell.readOnly}
             currentValues={currentValues}
             onSelectCell={onSelectCell}
-            setValueInFieldArray={setValueInFieldArray}
+            setValueInCurruentField={setValueInCurruentField}
         />)
 
     )

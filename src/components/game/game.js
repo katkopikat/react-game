@@ -22,7 +22,7 @@ import './game.css'
 //let sudokuArray = Array(1,2,3,4,6,7,5,8,9).sort(function() {return 0.5 - Math.random()});
 //console.log(sudokuArray)
 
-export default function Game() {
+export default function Game(props) {
     const [gameStatus, setGameStatus] = useState('not-started'); 
 
     const pauseGame = () => {
@@ -43,7 +43,7 @@ export default function Game() {
                 />
             </div>
             <div className="game-grid">
-                <Grid difficulty={30}
+                <Grid difficulty={props.difficulty}
                 //sudokuArray={sudokuArray}
                 />
             </div>        

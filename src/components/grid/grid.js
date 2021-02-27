@@ -26,15 +26,13 @@ export default function Grid(props){
 
     const [currentField, setCurrentField] = useState([]);//JSON.parse(localStorage.getItem('sudoku')) ||
 
-   // const [currentField, setCurrentField] = useState([]);
-    const [hasErrorValue, setErrorValue] = useState(0);
 
    // const setData = (field, time) => {
         window.addEventListener('unload', function() {
             localStorage.setItem('sudoku', JSON.stringify({currentField}) )
     });
 
-    console.log('sudoku')
+   // console.log('sudoku')
     
 
     useEffect(()=>{
@@ -78,29 +76,24 @@ export default function Grid(props){
 
     const setValueInCurruentField = (id, value, status) => {
         let arr = [...currentField];
-        
         let obj = currentField[id];
         obj.value = value;
         obj.error = status;
         arr.splice(id, 1, obj);
-        console.log(obj)
-
         setCurrentField(arr)
-        updateErrorStatus(status)
+
+        let isFinisfedGame = currentField.filter((el) => { return el.error || !el.value}).length;
+        if(!isFinisfedGame) console.log('Игра закончена')
+
     }
 
-    const updateErrorStatus = (status) => {
-        setErrorValue(status? hasErrorValue-1: hasErrorValue+1);
-        console.log(hasErrorValue)
-     }
+    // const updateErrorStatus = (status) => {
+    //     setErrorValue(status? hasErrorValue-1: hasErrorValue+1);
+    //     console.log(hasErrorValue)
+    //  }
 
      
-
-    if(!currentField.includes('') && hasErrorValue === 0) {// !currentField.includes('error')
-        console.log('Игра закончена')
-    }
-
-    console.log(currentValues)
+    //console.log(currentValues)
  
     return ( currentField.map(cell => 
         <Cell
@@ -111,11 +104,9 @@ export default function Grid(props){
             id={Number(cell.id)}
             value={String(cell.value)}
             readOnly={cell.readOnly}
-           // startValue={cell.startValue}
             currentValues={currentValues}
             onSelectCell={onSelectCell}
             setValueInCurruentField={setValueInCurruentField}
-           //hasError={updateErrorStatus}
         />)
 
     )

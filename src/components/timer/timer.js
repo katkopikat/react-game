@@ -17,7 +17,7 @@ export default function Timer (props){
         if (gameStatus === 'process'){
           seconds = timePaused % 60;
           minutes = Math.trunc((timePaused/ 60) % 60);
-          hours = Math.trunc((timePaused / 60));
+          hours = Math.trunc((minutes/60));
           settimerSeconds(seconds); 
           setTimerMinutes(minutes); 
           setTimerHours(hours); 

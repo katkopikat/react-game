@@ -34,7 +34,7 @@ export default function Game(props) {
         else if(gameStatus === 'paused') setGameStatus('process');
         else setGameStatus('paused');
 
-        console.log(gameStatus)
+      //  console.log(gameStatus)
     }
 
     return (

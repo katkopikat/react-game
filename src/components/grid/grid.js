@@ -14,9 +14,9 @@ import './grid.css';
 
 export default function Grid(props){
     
-    const {difficulty, sudokuArray} = props;
+    const {difficulty} = props;
 
-    const [fieldArray, setField] = useState(sudokuArray);
+    const [fieldArray, setField] = useState([]);
     //const [field, setDOMfield] = useState(sudokuArray);
 
     const [selRow, setSelectedRow] = useState(null);
@@ -28,6 +28,8 @@ export default function Grid(props){
  
     let idCount = 1;
     const baseField = [];
+    let field = '0681594327597283416342671589934157268278936145156842973729318654813465792465729831';
+    let sudokuArray = Array(1,2,3,4,6,7,5,8,9).sort(function() {return 0.5 - Math.random()});
     for (let y = 0; y < 9; y++ ){
         for (let x = 0; x < 9; x++ ){
             let prop = {
@@ -35,7 +37,8 @@ export default function Grid(props){
                 y,
                 s: parseInt(y / 3) * 3 + parseInt(x / 3),
                 id: idCount-1,
-                value: String(sudokuArray[idCount-1]),
+               // value: String(sudokuArray[idCount-1]),
+               value: (Math.random()*10>6) ? +sudokuArray[field.substr(idCount,1)-1] : ''
                // readOnly: !sudokuArray[idCount-1] ? true : ''
             }
             baseField.push(prop)  

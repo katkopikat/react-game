@@ -6,18 +6,22 @@ import PauseGameBtn from "../btn-pause-game";
 import Timer from '../timer';
 import './game.css'
 
-const sudokuArray = [
-    '', '', 7, 5, 8, 9, 1, '', '',
-    '', '', '', '', 2, '', '', '', '', 
-    8, 9, '', '', '', '', '', 5, 6,
-    '', 2, '', 3, '', 8, '', 6, '',
-    '', 1, '', '', '', '', '', 9, '', 
-    '', 3, '', 2, '', 5, '', 4, '', 
-    9, 4, '', '', '', '', '', 2, 7,
-    '', '', '', '', 6, '', '', '', '', 
-    '', '', 6, 4, 7, 2, 9, '', '', 
-  ]
+// const sudokuArray = [
+//     '', '', 7, 5, 8, 9, 1, '', '',
+//     '', '', '', '', 2, '', '', '', '', 
+//     8, 9, '', '', '', '', '', 5, 6,
+//     '', 2, '', 3, '', 8, '', 6, '',
+//     '', 1, '', '', '', '', '', 9, '', 
+//     '', 3, '', 2, '', 5, '', 4, '', 
+//     9, 4, '', '', '', '', '', 2, 7,
+//     '', '', '', '', 6, '', '', '', '', 
+//     '', '', 6, 4, 7, 2, 9, '', '', 
+//   ]
   
+
+//let sudokuArray = Array(1,2,3,4,6,7,5,8,9).sort(function() {return 0.5 - Math.random()});
+//console.log(sudokuArray)
+
 export default function Game() {
     const [gameStatus, setGameStatus] = useState('not-started'); 
 
@@ -39,7 +43,9 @@ export default function Game() {
                 />
             </div>
             <div className="game-grid">
-                <Grid difficulty={30} sudokuArray={sudokuArray}/>
+                <Grid difficulty={30}
+                //sudokuArray={sudokuArray}
+                />
             </div>        
       </div>
     );

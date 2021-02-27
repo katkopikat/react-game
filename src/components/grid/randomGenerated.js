@@ -2,7 +2,7 @@ const randomGeneratedField = (difficulty) => {
     let dif;
     switch (difficulty) {
         case 'cross-check':
-            dif = 2;
+            dif = 1;
             break;
         case 'easy':
             dif = 4;

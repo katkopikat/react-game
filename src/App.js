@@ -28,23 +28,34 @@ function App() {
   const [statusField, setStatusField] = useState([]);
 
   const [difficulty, setDifficulty] = useState('medium');
+
+  const [gameStatus, setStatus] = useState('non-started');
   // const [gameStatus, setGameStatus] = useState('not-started'); // not-startded --> paused --> process
 
   const onStartNewGame = () => {
     setStartedGame(true);
-    // setGameStatus('process');
+    setStatus('process');
+
+   
     // setGameISStarted(true);
+ }
+
+ const setGameStatus= (status) => {
+    setStatus(status);
  }
 
  const onChooseDifficulty = (val) => {
     setDifficulty(val)
  }
 
+
 //  const pauseGame = () => {
 //    if(gameStatus === 'process') setGameStatus('paused');
 //    else if(gameStatus === 'paused') setGameStatus('process');
 //    else setGameStatus('paused');
 //  }
+
+console.log(gameStatus)
 
   return (
     <div className="App">
@@ -53,7 +64,7 @@ function App() {
         <h1 className="main-heading"> Sudoku </h1>
         {startNemGame ? null : <NewGameBtn onStartNewGame={onStartNewGame}/>}
         {startNemGame ? null : <Difficulty onChooseDifficulty={onChooseDifficulty}/>}
-        {startNemGame ? <Game difficulty={difficulty}/> : null}
+        {startNemGame ? <Game difficulty={difficulty} setGameStatus={setGameStatus} gameStatus={gameStatus}/> : null}
       </header>
     </div>
   );

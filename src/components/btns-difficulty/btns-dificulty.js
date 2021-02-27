@@ -1,5 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
+import './btns-dificulty.css'
 import { Radio } from 'antd';
 
  export default function Difficulty(props){
@@ -14,5 +15,5 @@ import { Radio } from 'antd';
     </Radio.Group>
     </div>
      )
-     
+
  }

@@ -23,24 +23,29 @@ import './game.css'
 //console.log(sudokuArray)
 
 export default function Game(props) {
-    const [gameStatus, setGameStatus] = useState('not-started'); 
+  const { setGameStatus, gameStatus } = props;
+    //const [gameStatus, setGameStatus] = useState('not-started'); 
 
-    const pauseGame = () => {
+    const toggleStatusGame = () => {
         if(gameStatus === 'process') setGameStatus('paused');
         else if(gameStatus === 'paused') setGameStatus('process');
         else setGameStatus('paused');
+
+        console.log(gameStatus)
     }
+
+
 
     return (
         <div>
            <div className="wrapper-pause-timer">
-                <PauseGameBtn
-                onPauseGame={pauseGame}
-                gameStatus={gameStatus}
-                />
-                <Timer
-                gameStatus={gameStatus}
-                />
+                <button className="pause-btn"
+                onClick={ () => toggleStatusGame()}
+                >
+                {gameStatus === 'paused' ? 'Play' : 'Resume'}
+                </button>
+
+                <Timer gameStatus={gameStatus}/>
             </div>
             <div className="game-grid">
                 <Grid difficulty={props.difficulty}

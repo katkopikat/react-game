@@ -1,79 +1,40 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './timer.css'
 
 
 export default function Timer (props){
   
-    let { gameStatus } = props.gameStatus;
+    const { gameStatus } = props;
+
+    let [hours, setTimerHours] = useState(0);
     let [minutes, setTimerMinutes] = useState(0);
     let [seconds, settimerSeconds] = useState(0);
-    let [timerText, setTimerText] = useState('00:00');
-
-    let idInterval = useRef();
-
-    // if(gameInProcess){
-        
-    //     console.log('Игра в процессе')
-    // } else {
-    //     console.log('не в процессе')
-    // }
-
-    useEffect(() => {
-        if (gameStatus === 'process'){
-            const timer = setTimeout(() => {
-                console.log('This will run after 1 second!')
-              }, 1000);
-              return () => clearTimeout(timer);
-        }
-        
-      }, [gameStatus]);
-
+    let [timerText, setTimerText] = useState('0:00:00');
+    let [timePaused, setTimePaused] = useState(0);
 
     useEffect(()=> {
-        console.log('gameStatus', gameStatus)
-        //clearTimer()
-      // startTimer();
-      let timeMinute = 0;
       const timer = setInterval(() => {
-        seconds = timeMinute % 60;
-        minutes = Math.trunc((timeMinute / 60) % 60);
-        settimerSeconds(seconds); 
-        setTimerMinutes(minutes); 
-        timerDisplay();
-        timeMinute += 1;
-      }, 1000);
-
-      return () => clearTimeout(timer);
-
-    }, [gameStatus]);
-
-    const startTimer = () => {
-        console.log('Таймер идёт')
-        let timeMinute = 0;
-        idInterval = setInterval(() => {
-          seconds = timeMinute % 60;
-          minutes = Math.trunc((timeMinute / 60) % 60);
+        if (gameStatus === 'process'){
+          seconds = timePaused % 60;
+          minutes = Math.trunc((timePaused/ 60) % 60);
+          hours = Math.trunc((timePaused / 60));
           settimerSeconds(seconds); 
           setTimerMinutes(minutes); 
+          setTimerHours(hours); 
           timerDisplay();
-          timeMinute += 1;
-        }, 1000);
-    }
+          setTimePaused(timePaused + 1)
+        } 
+      }, 1000);
+  
+      return () => clearTimeout(timer);
+    }, [timePaused, gameStatus ])
 
 
     const timerDisplay = () => {
         let sec = seconds > 9 ?  seconds : `0${seconds}`;
         let min = minutes > 9 ? minutes : `0${minutes}`;
-        setTimerText(`Time: ${min}:${sec}`);
+        setTimerText(`${hours}:${min}:${sec}`);
     }
-
-
-    const clearTimer = () => {
-        setTimeout(() => {
-          clearInterval(idInterval);
-        }, 0);
-      }
-
   
       return (
         <button className="wrapper-timer">

@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 
 export default function PauseGameBtn(props){
     return (
-    <button className="pause-btn"
-   // onClick={ () => {props.props.setGameStatus('pause')}}
-    >
-    {props.gameStatus === 'paused' ? 'Play' : 'Resume'}
+    <button className="pause-btn">
+    {props.gameStatus === 'paused' ? 'Play' : 'Pause'}
     </button>)
 }

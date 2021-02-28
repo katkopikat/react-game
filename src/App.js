@@ -45,7 +45,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       <Menu onStartNewGame={onStartNewGame} />
-        <h1 className="main-heading"> Sudoku </h1>
+        <h1 className="main-heading"> Let`s Sudoku! </h1>
         {startNemGame ? null : <NewGameBtn onStartNewGame={onStartNewGame}/>}
         {startNemGame ? null : <Difficulty onChooseDifficulty={onChooseDifficulty}/>}
         {startNemGame ? <Game difficulty={difficulty} setGameStatus={setGameStatus} gameStatus={gameStatus}/> : null}

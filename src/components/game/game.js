@@ -28,7 +28,7 @@ export default function Game(props) {
                 <button className="pause-btn"
                 onClick={ () => toggleStatusGame()}
                 >
-                {gameStatus === 'paused' ? 'Play' : 'Resume'}
+                {gameStatus === 'paused' ? 'Play' : 'Pause'}
                 </button>
 
                 <Timer gameStatus={gameStatus}/>

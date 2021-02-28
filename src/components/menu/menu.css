@@ -13,3 +13,15 @@
 .ant-btn-primary, .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
     background-color: #e9bf36;
 }
+
+.ant-menu-inline-collapsed > .ant-menu-item .ant-menu-item-icon, .anticon{
+    font-size: 22px;
+}
+
+.ant-menu.ant-menu-dark {
+    background-color: transparent;
+}
+
+.ant-menu-item >span:hover {
+    color: #e9bf36;
+}

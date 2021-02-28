@@ -37,15 +37,8 @@ export default class App extends Component {
       <div
        style={{ width: 256 }}
        className="menu">
-        <Button
-         type="primary"
-         className="menu-btn"
-         onClick={this.toggleCollapsed}
-         style={{ marginBottom: 16 }}>
-         {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
-        </Button>
         <Menu
-          defaultSelectedKeys={['1']}
+         // defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
           mode="inline"
           theme="dark"

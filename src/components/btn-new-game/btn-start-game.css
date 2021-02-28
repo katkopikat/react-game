@@ -1,16 +1,16 @@
 .new-game-btn, .pause-btn, .wrapper-timer, .difficulty-btn {
+    border: 2px solid #e9bf36;
     text-transform: none;
     height: 32px;
     font-size: 18px;
-    background-color: #e9bf36;
+    background-color: transparent;
     width: 130px;
     outline: none;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
     padding-bottom: 4px;
-    color: black;
+    color: #e9bf36;
     margin-bottom: 10px;
+    line-height: 1.3;
 }
 
 .difficulty-btn{

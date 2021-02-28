@@ -16,29 +16,53 @@ import randomGeneratedField from './randomGenerated';
 
 export default function Grid(props){
     const {difficulty, finishedGame} = props;
-    const loadGame = Object.values(JSON.parse(localStorage.getItem('sudoku')));
+
+    //const loadGame = Object.values(JSON.parse(localStorage.getItem('sudoku')));
 
     const [selRow, setSelectedRow] = useState(null);
     const [selCol, setSelectedCol] = useState(null);
     const [selSegm, setSelectedSegmnent] = useState(null);
     const [selectedCell, setSelected] = useState(null);
+
     const [currentValues, setValues] = useState([]);
-
-    const [currentField, setCurrentField] = useState([]);//JSON.parse(localStorage.getItem('sudoku')) ||
-
+    const [currentField, setCurrentField] = useState([]); //JSON.parse(localStorage.getItem('sudoku')) ||
 
    // const setData = (field, time) => {
-        window.addEventListener('unload', function() {
-            localStorage.setItem('sudoku', JSON.stringify({currentField}) )
+ setTimeout(()=> {
+    window.addEventListener('unload', function() {
+        localStorage.setItem('sudoku', JSON.stringify({currentField}) )
+        console.log('unload')
     });
+ }, 0)
+ 
 
-   // console.log('sudoku')
-    
 
     useEffect(()=>{
-        let obj = randomGeneratedField(difficulty);
+        let arr;
+        if(localStorage.length > 0){
+            for(let key in localStorage) {
+                if (key.match(/sudoku/)) {
+                let temp1= JSON.parse(localStorage.getItem('sudoku'));
+                arr = [...temp1.currentField]
+            }
+        }
+      
+     
+        } else {
+            arr = randomGeneratedField(difficulty);
+        }
+        //}
        // setStartField(obj.baseField);
-        setCurrentField(obj);
+
+    //    let temp1= JSON.parse(localStorage.getItem('sudoku'));
+    //    let temp2= [...temp1.currentField]
+
+    //    console.log(temp2);
+        //console.log(arr[0])
+        console.log(arr[0])
+        setCurrentField(arr);
+
+   
     },[]) 
 
     useEffect(() => {
@@ -75,6 +99,7 @@ export default function Grid(props){
     const onSelectCell = (val) => { setSelected(val) }
 
     const setValueInCurruentField = (id, value, status) => {
+        //console.log(status)
         let arr = [...currentField];
         let obj = currentField[id];
         obj.value = value;
@@ -82,22 +107,16 @@ export default function Grid(props){
         arr.splice(id, 1, obj);
         setCurrentField(arr)
 
+        // console.log(obj)
+        // console.log(currentField)
+
         let isFinisfedGame = currentField.filter((el) => { return el.error || !el.value}).length;
         if(!isFinisfedGame) {
             console.log('Игра закончена')
             finishedGame(true);
         }
-
     }
 
-    // const updateErrorStatus = (status) => {
-    //     setErrorValue(status? hasErrorValue-1: hasErrorValue+1);
-    //     console.log(hasErrorValue)
-    //  }
-
-     
-    //console.log(currentValues)
- 
     return ( currentField.map(cell => 
         <Cell
             x={cell.x+1}
@@ -105,6 +124,7 @@ export default function Grid(props){
             s={cell.s+1}
             key={cell.id}
             id={Number(cell.id)}
+            error={String(cell.error)}
             value={String(cell.value)}
             readOnly={cell.readOnly}
             currentValues={currentValues}

@@ -1,0 +1,43 @@
+.ant-table {
+    background: #ffffff;
+    width: 450px;
+}
+a {
+    color: black;
+    font-size: 18px;
+}
+
+.ant-pagination {
+    display: none;
+}
+
+
+.ant-table-thead > tr > th {
+    background-color: #e9bf36;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    text-align: left;
+}
+
+.ant-table table {
+    width: 100%;
+    text-align: left;
+}
+
+
+.ant-tag {
+
+    /* margin-right: 8px; */
+  
+    font-size: 16px;
+    /* line-height: 20px; */
+    font-weight: 500;
+  
+    background: #fafafa;
+     border: none;
+    text-align: left;
+}
+
+#score-table > tr {
+    background: #fafafa;
+}

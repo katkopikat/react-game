@@ -34,7 +34,7 @@ const randomGeneratedField = (difficulty) => {
                     id: idCount-1,
                     value: val? String(+sudokuArray[field.substr(idCount,1)-1]) : '',
                     readOnly: !!val,
-                    error: false
+                    error: 'false'
                 }
                 baseField.push(prop)  
                 //startArray.push(prop.value)

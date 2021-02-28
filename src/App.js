@@ -3,7 +3,8 @@ import './App.css';
 import NewGameBtn from './components/btn-new-game';
 import Game from './components/game';
 import Menu from './components/menu/menu';
-import Difficulty from './components/btns-difficulty/btns-dificulty'
+import Difficulty from './components/btns-difficulty/btns-dificulty';
+import Score from './components/Score'
 
 
 
@@ -21,37 +22,45 @@ import Difficulty from './components/btns-difficulty/btns-dificulty'
 
 
 function App() {
-
   const [startNemGame, setStartedGame] = useState(false);
-  // const [gameIsStarted, setGameISStarted] = useState(false);
-  // const [statusField, setStatusField] = useState([]);
+  const [showScore, setShowScore] = useState(false);
   const [difficulty, setDifficulty] = useState('medium');
-  const [gameStatus, setStatus] = useState('non-started'); // not-startded --> paused --> process
-
+  //gameStatus :  not-startded --> process --> paused --> process 
+  const [gameStatus, setStatus] = useState('non-started');
+  
   const onStartNewGame = () => {
-    setStartedGame(true);
-    setStatus('process');
- }
+      setStartedGame(true);
+      setStatus('process');
+  }
 
- const setGameStatus= (status) => {
-    setStatus(status);
- }
+  const onShowScore = () => {
+    setShowScore(true);
+  }
 
- const onChooseDifficulty = (val) => {
-    setDifficulty(val)
- }
+  const setGameStatus= (status) => {
+      setStatus(status);
+  }
+
+  const onChooseDifficulty = (val) => {
+      setDifficulty(val)
+      setStartedGame(true);
+      setStatus('process');
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-      <Menu onStartNewGame={onStartNewGame} />
+      <Menu onStartNewGame={onStartNewGame}  onShowScore={onShowScore}/>
         <h1 className="main-heading"> Let`s Sudoku! </h1>
-        {startNemGame ? null : <NewGameBtn onStartNewGame={onStartNewGame}/>}
+        <div className="game-wrapper">
         {startNemGame ? null : <Difficulty onChooseDifficulty={onChooseDifficulty}/>}
         {startNemGame ? <Game difficulty={difficulty} setGameStatus={setGameStatus} gameStatus={gameStatus}/> : null}
+        {showScore ? <Score /> : null}
+        </div>
       </header>
     </div>
   );
 }
 
 export default App;
+

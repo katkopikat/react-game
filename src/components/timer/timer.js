@@ -26,8 +26,8 @@ export default function Timer (props){
         } 
       }, 1000);
   
-      return () => clearTimeout(timer);
-    }, [timePaused, gameStatus ])
+      return () => {clearTimeout(timer)};
+    }, [timePaused, gameStatus])
 
 
     const timerDisplay = () => {

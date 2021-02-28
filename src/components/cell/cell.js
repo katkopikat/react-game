@@ -2,35 +2,30 @@ import React, { useState, useEffect } from 'react';
 import './cell.css'
 
 export default function Cell(props){
-    let {x, y, s, id, value, readOnly, currentValues, setValueInCurruentField, onSelectCell } = props;
-
-    const [selected, setSelected] = useState(false);
+    let {x, y, s, id, value, readOnly, currentValues, setValueInCurruentField, onSelectCell, error } = props;
     const [numberValue, setUserNumber] = useState(String(value) || '');
-    const [errorStatus, setErrorStatus] = useState(false);
+    const [errorStatus, setErrorStatus] = useState(error);
 
     useEffect(() => {
         setValueInCurruentField(parseInt(id), numberValue, errorStatus);
    }, [numberValue])
 
+
     const setColorSelected = (e) =>{
-        setSelected(true);
         e.target.classList.add('selected');
     }
     
     const setColorUnselected = e =>{
-        setSelected(false);
         e.target.className='cell-input'
 
-        if (errorStatus) e.target.classList.add('error');
+        if (errorStatus ==='true') e.target.classList.add('error');
     }
 
     const toggleErrorStatus= cell => {
         if(cell.value && currentValues.includes(cell.value)){
-            //console.log('Error true')
-            setErrorStatus(true);
+            setErrorStatus('true');
         } else {
-           // console.log('Error false')
-             setErrorStatus(false);
+             setErrorStatus('false');
         }
     }
 
@@ -43,11 +38,13 @@ export default function Cell(props){
         setUserNumber(cell.value.slice(0,1));
         toggleErrorStatus(cell)
     }
-
     return (
           <input
           type="number"
-          className="cell-input"
+          //className="cell-input"
+          error={errorStatus}
+          className={error == 'true' ?'cell-input error': 'cell-input'}
+         // className={error? 'cell-input' : 'cell-input error'}
           x={x}
           y={y}
           s={s}
@@ -55,7 +52,8 @@ export default function Cell(props){
           key={id}
           value={String(numberValue)}
           readOnly={readOnly}
-          selectedCell={selected}
+          
+        //  selectedCell={selected}
 
           onFocus={ (e) => {setColorSelected(e);
                             onSelectCell(e.target)}}

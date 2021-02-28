@@ -8,12 +8,6 @@
     color: black;
 }
 
-.btn-difficulty > .ant-radio-button-checked{
-    background-color: #e9bf36;
-    border-color: #e9bf36;
-    color: black;
-}
-
 .btn-difficulty > .ant-radio-button-checked:hover{
     border-color: #e9bf36;
     color: white;
@@ -36,9 +30,26 @@
     line-height: 1.5;
     border: 2px solid #e9bf36;
     color:#e9bf36;
-    background-color: #212327;
+    background-color: transparent;
     border-top-width: 2px;
     border-left-width: 2px;
     cursor: pointer;
     margin: 10px;
+    z-index: 20;
+}
+
+.ant-checkbox-input:focus + .ant-checkbox-inner{
+    background: #e9bf36 ;
+    border-color: #e9bf36;
+}
+
+.checkbox-hint{
+    color: white;
+    font-size: 16px;
+}
+
+label > .ant-radio-button-wrapper .ant-radio-button-wrapper-checked .btn-difficulty {
+    background-color: #e9bf36;
+    border-color: #e9bf36 !important;
+    color: black;
 }

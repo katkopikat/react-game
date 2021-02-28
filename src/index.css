@@ -7,3 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #212327;
 }
+
+#root{
+  z-index: 3;
+}

@@ -13,13 +13,8 @@ import './menu.css'
 const { SubMenu } = Menu;
 
 export default class App extends Component {
-//   state = {
-//     collapsed: true,
-//   };
-
   constructor(props) {
     super(props);
-    // Не вызывайте здесь this.setState()!
     this.state = { 
         collapsed: true, 
     };
@@ -38,19 +33,21 @@ export default class App extends Component {
        style={{ width: 256 }}
        className="menu">
         <Menu
-         // defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
           mode="inline"
           theme="dark"
           inlineCollapsed={this.state.collapsed}
         >
           <Menu.Item key="1" icon={<RightSquareOutlined />}
-          onClick={(e) => this.props.onStartNewGame(e)}>
+          onClick={() => this.props.onStartNewGame()}>
             New Game
           </Menu.Item>
-          <Menu.Item key="2" icon={<BarChartOutlined />}>
+
+          <Menu.Item key="2" icon={<BarChartOutlined />}
+           onClick={() => this.props.onShowScore()}>
             Score
           </Menu.Item>
+
           <Menu.Item key="3" icon={<ControlOutlined />}>
             Settings
           </Menu.Item>

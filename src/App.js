@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import FullscreenOutlined from '@ant-design/icons';
 import './App.css';
 
 import Menu from './components/menu/menu';
@@ -9,6 +10,9 @@ import Score from './components/score'
 import Settings from './components/settings'
 
 import Game from './components/game';
+
+
+
 
 function App() {
 
@@ -20,9 +24,9 @@ function App() {
       if(key.match(/sudoku/)){
         i++;
       }
-      console.log('i', i)
-      return i ? true : false;
   }
+  console.log('i', i)
+      return i ? true : false;
 }
 
   const checkIsContinue = (value) => {
@@ -35,6 +39,7 @@ function App() {
       {/* <Menu onStartNewGame={onStartNewGame}  onShowScore={onShowScore}/>  onStartNewGame={onStartNewGame}  onShowScore={onShowScore} */}
       <header className="App-header">
         <Router>
+        
         <Menu />
             <Route path="/new-game" component={NewGame} />
             <Route path="/load-game" render={ () => <LoadGame checkIsContinue={checkIsContinue}/> }/>
@@ -43,7 +48,7 @@ function App() {
             <Route path="/settings" component={Settings}  />
              {/* { checkGameInLS() ? <Redirect from='/' to='/load-game' exact/> : <Redirect from='/' to='/new-game' exact/>}  */}
 
-             <Redirect from='/' to={checkGameInLS() ? '/load-game' : '/new-game'} exact/>
+             <Redirect from='/' to={ checkGameInLS() ? '/load-game' : '/new-game'} exact/>
 
         </Router>
       </header>

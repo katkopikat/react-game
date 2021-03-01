@@ -73,6 +73,7 @@
   overflow: hidden;
   opacity: 0.2;
   z-index: 2;
+  pointer-events: none;
 }
 
 .circles li{
@@ -193,4 +194,12 @@
 .sub-heading {
   color: #e9bf36;
   font-size: 22px;
+}
+
+:-webkit-full-screen .App-header{ 
+  transform: scale(1.5);
+}
+
+#root:-moz-full-screen {
+  background: red;
 }

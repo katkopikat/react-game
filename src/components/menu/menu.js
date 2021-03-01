@@ -3,15 +3,23 @@ import { Menu, Button } from 'antd';
 import {
   RightSquareOutlined,
   BarChartOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
+  FullscreenOutlined,
+  // MenuUnfoldOutlined,
+  // MenuFoldOutlined,
   ControlOutlined
 } from '@ant-design/icons';
 //import '../score/node_modules/antd/dist/antd.css';
-import './menu.css'
+
 import { Link } from 'react-router-dom';
+import './menu.css'
 
 const { SubMenu } = Menu;
+
+
+
+//Запустить отображение в полноэкранном режиме
+ 
+
 
 export default class App extends Component {
   constructor(props) {
@@ -21,13 +29,38 @@ export default class App extends Component {
     };
   }
 
+  checkGameInLS = () => {
+    let i = 0;
+    for (let key in localStorage) {
+      console.log(key)
+      if(key.match(/sudoku/)){
+        i+=1;
+      }    
+  }
+  return i ? true : false;
+}
+  // toggleCollapsed = () => {
+  //   this.setState({
+  //     collapsed: !this.state.collapsed,
+  //   });
+  // };
 
-  toggleCollapsed = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
+  // componentDidMount() {
 
+  // }
+
+  toggleScreen(){
+    console.log('full')
+    if(!document.fullscreenElement){
+      document.documentElement.requestFullscreen();
+    }
+    else {
+      if(document.fullscreenEnabled){
+        document.exitFullscreen();
+      }
+    }
+  }
+ 
   render() {
     return (
       <div
@@ -40,8 +73,7 @@ export default class App extends Component {
           inlineCollapsed={this.state.collapsed}>
 
           <Menu.Item key="new-game" icon={<RightSquareOutlined />}>
-          {/* onClick={() => this.props.onStartNewGame()}> */}
-          <Link to="/" exact/>
+          <Link to={() => this.checkGameInLS() ? '/load-game' : '/new-game'}/>
           Game
           </Menu.Item>
 
@@ -53,6 +85,10 @@ export default class App extends Component {
           <Menu.Item key="settings" icon={<ControlOutlined />}>
           Settings
           <Link to="/settings" />
+          </Menu.Item>
+
+          <Menu.Item key="fullscreen" icon={<FullscreenOutlined />} onClick={() => this.toggleScreen()}>
+          Fullscreen
           </Menu.Item>
           {/* <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
             <Menu.Item key="5">Option 5</Menu.Item>

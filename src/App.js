@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.css';
 
@@ -8,69 +8,24 @@ import LoadGame from './components/load-game';
 import Score from './components/score'
 import Settings from './components/settings'
 
+import Game from './components/game';
+
 function App() {
-  // const [startNemGame, setStartedGame] = useState(false);
-  // const [showDiffBtns, setShowDifficultyBtns] = useState(true);
 
-  // const [showScore, setShowScore] = useState(false);
-  // const [difficulty, setDifficulty] = useState('medium');
-  // //gameStatus :  not-startded --> process --> paused --> process 
-  // const [gameStatus, setStatus] = useState('non-started');
-
-  // const [startField, setStartField] = useState(null);
-
-  // useEffect(()=> {
-  //   if(localStorage.length){
-  //     setShowDifficultyBtns(false)
-  //   }
-  
-  // }, [])
-
-  // const onStartNewGame = () => {
-  //     setStartedGame(true);
-  //     setStatus('process');
-  // }
-
-  // const onShowScore = () => {
-  //   setShowScore(true);
-  // }
-
-  // const setGameStatus = (status) => {
-  //     setStatus(status);
-  // }
-
-  // const onChooseDifficulty = (val) => {
-  //     setDifficulty(val)
-  //     setStartField(randomGeneratedField(val));
-  //     setStartedGame(true);
-  //     setStatus('process');
-  // }
-
-  // const showDifficultyBtns = () => {
-  //   setShowDifficultyBtns(true);
-  // }
-  // // const newGame = () => {
-    
-  // // }
-
-  // const loadGame = () => {
-  //   let arr;
-  //   if(localStorage.length > 0){
-  //     for(let key in localStorage) {
-  //         if (key.match(/sudoku/)) {
-  //         let loadedGame= JSON.parse(localStorage.getItem('sudoku'));
-  //         arr = [...loadedGame.currentField]
-  //       }
-  //     }
-  //     showDifficultyBtns(false);
-  //     setStartField(arr);
-  //     setStartedGame(true);
-  //     setStatus('process');
-  //   }
-  // }
+  const [continueGame, setContinueGame] = useState(false);
 
   const checkGameInLS = () => {
-    return localStorage.length ? true: false;
+    let i = 0;
+    for (let key in localStorage) {
+      if(key.match(/sudoku/)){
+        i++;
+      }
+      return i ? true : false;
+  }
+}
+
+  const checkIsContinue = (value) => {
+    setContinueGame(value)
   }
 
   return (
@@ -81,27 +36,12 @@ function App() {
         <Router>
         <Menu />
             <Route path="/new-game" component={NewGame} />
-            <Route path="/load-game" component={LoadGame} />
+            <Route path="/load-game" render={ () => <LoadGame checkIsContinue={checkIsContinue}/> }/>
+            <Route path="/game" render={ () => <Game continueGame={continueGame}/> }/>
             <Route path="/score" component={Score} />
             <Route path="/settings" component={Settings}  />
             { checkGameInLS() ? <Redirect from='/' to='/load-game' exact/> : <Redirect from='/' to='/new-game' exact/>}
         </Router>
-          
-          {/* <h1 className="main-heading"> Let`s Sudoku! </h1>
-          {localStorage.length > 0 || gameStatus !== 'non-started'
-                                    ? <div className="wrapper-loaded-game">
-                                          <h3 className="sub-heading"> You have don`t finished game. Do you want continue or start new?</h3>
-                                          <LoadGameBtn loadGame={loadGame}/>
-                                          <NewGameBtn showDifficultyBtns={showDifficultyBtns}/>
-                                      </div>
-                                    : <div><Difficulty onChooseDifficulty={onChooseDifficulty}/></div>
-            }
-
-          <div className="game-wrapper">
-            {showDiffBtns ? <Difficulty onChooseDifficulty={onChooseDifficulty}/> : null}
-            {startNemGame ? <Game setGameStatus={setGameStatus} gameStatus={gameStatus} startField={startField}/> : null}
-            {showScore && !startNemGame ? <Score /> : null}
-          </div> */}
       </header>
     </div>
   );

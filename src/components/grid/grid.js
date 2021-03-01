@@ -10,17 +10,20 @@ import './grid.css';
 //     //                         .map(x => Number(x))
 
 export default function Grid(props){
-    const {startField, finishedGame} = props;
+    const {startField, finishedGame, difficulty} = props;
+
     const [selRow, setSelectedRow] = useState(null);
     const [selCol, setSelectedCol] = useState(null);
     const [selSegm, setSelectedSegmnent] = useState(null);
     const [selectedCell, setSelected] = useState(null);
     const [currentValues, setValues] = useState([]);
-    const [currentField, setCurrentField] = useState([]);
+    const [currentField, setCurrentField] = useState(startField);
 
     setTimeout(()=> {
         window.addEventListener('unload', function() {
-            localStorage.setItem('sudoku', JSON.stringify({currentField}) )
+            if(!finishedGame){
+                localStorage.setItem('sudoku', JSON.stringify({currentField}) )
+            }
         });
     }, 0)
 
@@ -58,7 +61,6 @@ export default function Grid(props){
         const findAttr = selectedCell.getAttribute(`${attr}`);
         return document.querySelectorAll(`input[${attr}="${findAttr}"]`);
     }
-
     const onSelectCell = (val) => { setSelected(val) }
 
     const setValueInCurruentField = (id, value, status) => {
@@ -69,8 +71,8 @@ export default function Grid(props){
         arr.splice(id, 1, obj);
         setCurrentField(arr)
 
-        let isFinisfedGame = currentField.filter((el) => { return el.error || !el.value}).length;
-        if(!isFinisfedGame) finishedGame(true);
+        let isFinishGame = currentField.filter((el) => { return el.error === 'true' || !el.value}).length;
+        if(!isFinishGame) {finishedGame(true); console.log('Выиграли')};
     }
 
     return ( 

@@ -1,40 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'antd/dist/antd.css';
 import { Table, Tag } from 'antd';
 import './score.css'
 
-const results = [
-  {
-    key: '1',
-    time: '01:37:18',
-    date: '28.02.21',
-    tags: ['medium'],
-  },
-  {
-    key: '2',
-    date: '25.02.21',
-    time: '01:12:18',
-    tags: ['easy'],
-  },
-  {
-    key: '3',
-    date: '01.03.21',
-    time: '00:40:18',
-    tags: ['hard'],
-  },
-  {
-    key: '4',
-    date: '25.02.21',
-    time: '01:07:18',
-    tags: ['medium'],
-  },
-  {
-    key: '5',
-    date: '01.03.21',
-    time: '00:36:18',
-    tags: ['easy'],
-  },
-];
+
+const getResultsfromLS = () => {
+  let res = [];
+  let j = 1;
+  for (let key in localStorage) {
+    if (key.match(/result/)) {
+      res.push(JSON.parse(localStorage.getItem(`result${j}`)));
+      j += 1;
+    }
+  }
+  return res;
+}
 
 function sortScore(arr){
   return arr.sort((a, b) => {
@@ -45,6 +25,24 @@ function sortScore(arr){
 }
 
 export default function Score(){
+
+    const [results, setResultsArray] = useState([]);
+
+    useEffect(() => {
+      let arrayRes = sortScore(getResultsfromLS());
+      if (arrayRes.length === 0) arrayRes.push(
+          {
+            time: '',
+            date: '',
+            key: 0,
+            tags: ['You haven`t results yet']
+          }
+        )
+      if(arrayRes.length >= 10) arrayRes.length = 10;
+
+      setResultsArray(arrayRes)
+    }, [])
+    
     const columns = [
         {
           title: 'Time',
@@ -78,11 +76,9 @@ export default function Score(){
           dataIndex: 'date',
           date: 'date',
           key: 'date',
-          render: text => <a>{text}</a>,
+          render: text => <a>{text.substr(0, 10)}</a>,
         },
-      ];
+    ];
       
-
-      
-      return(<Table columns={columns} dataSource={sortScore(results)} id="score-table"/>)
+    return(<Table columns={columns} dataSource={results} id="score-table"/>)
 }

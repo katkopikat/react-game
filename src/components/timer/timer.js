@@ -4,13 +4,20 @@ import './timer.css'
 
 export default function Timer (props){
   
-    const { gameStatus } = props;
+    const { gameStatus, continueGame, gameIsFinished, difficulty } = props;
 
     let [hours, setTimerHours] = useState(0);
     let [minutes, setTimerMinutes] = useState(0);
     let [seconds, settimerSeconds] = useState(0);
     let [timerText, setTimerText] = useState('0:00:00');
-    let [timePaused, setTimePaused] = useState(0);
+    let [timePaused, setTimePaused] = useState(continueGame ? +localStorage.getItem('timer') : 0);
+
+    
+    setTimeout(()=> {
+      window.addEventListener('unload', function() {
+          localStorage.setItem('timer', timePaused)
+      });
+  }, 0)
 
     useEffect(()=> {
       const timer = setInterval(() => {
@@ -29,6 +36,21 @@ export default function Timer (props){
       return () => {clearTimeout(timer)};
     }, [timePaused, gameStatus])
 
+    useEffect(()=> {
+      let i = 0;
+      for (let key in localStorage) {
+        if (key.match(/result/)) {
+          i += 1;
+        }
+      }
+
+      if(gameIsFinished) {
+        localStorage.setItem(`result${i+1}`, JSON.stringify({time: timerText, tags: [difficulty], date: new Date(), key: i+1}))
+        localStorage.removeItem('timer')
+        localStorage.removeItem('sudoku');
+      }
+
+    }, [gameIsFinished])
 
     const timerDisplay = () => {
         let sec = seconds > 9 ?  seconds : `0${seconds}`;

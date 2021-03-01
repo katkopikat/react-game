@@ -1,8 +1,8 @@
 import React from 'react';
-import 'antd/dist/antd.css';
+//import '../score/node_modules/antd/dist/antd.css';
 import { Result, Button } from 'antd';
+import NewGameBtn from '../btn-new-game';
 import './win-message.css'
-
 
 export default function WinMessage(){
 
@@ -14,14 +14,15 @@ export default function WinMessage(){
                     <span className="icon-animation-text"/>
                 </div>
                 <Result
-            // status="success"
                 title="You win!"
                 subTitle="Hey! You're awesome! You solved sudoku!
                 Maybe play more?"
                 extra={[
-                <Button type="primary" key="console" className="btns">
-                New Game
-                </Button>
+
+                < NewGameBtn />
+                // <Button type="primary" key="console" className="btns">
+                // New Game
+                // </Button>
                 ]}
                 />
              </div>

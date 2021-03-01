@@ -186,6 +186,11 @@
   z-index: 1;
 }
 
-.game-wrapper{
+.game-wrapper, .wrapper-loaded-game{
   z-index: 10;
+}
+
+.sub-heading {
+  color: #e9bf36;
+  font-size: 22px;
 }

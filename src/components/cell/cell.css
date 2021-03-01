@@ -1,20 +1,5 @@
-/* .cell {
-    background-color: aliceblue;
-} */
-
 .cell-input{
-    /* height: 47px;
-    width: 47px;
-    font-size: 20px;
-    text-align: center;
-    border: none;
-    -webkit-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.27) inset;
-    -moz-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.27) inset;
-    box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.27) inset;
-    color: black;
-} */
-
-height: 47px;
+    height: 47px;
     width: 47px;
     font-size: 20px;
     text-align: center;
@@ -47,10 +32,6 @@ input[type="number"]::-webkit-inner-spin-button {
     outline: 0;
     outline-offset: 0;
 }
-
-/* input[readonly]{
-    pointer-events: none;
-} */
 
 .error{
     background-color: #ffaabf;

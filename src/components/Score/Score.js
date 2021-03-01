@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { Table, Tag } from 'antd';
-import './Score.css'
+import './score.css'
 
 const results = [
   {
@@ -38,8 +38,6 @@ const results = [
 
 function sortScore(arr){
   return arr.sort((a, b) => {
-    //let first = a.date.replace(':','');
-    //let second = b.date.replace(':','');
     if (a.time > b.time) return 1;
     if (a.time < b.time) return -1;
     return 0;

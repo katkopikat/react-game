@@ -1,5 +1,5 @@
 import React from 'react';
-import 'antd/dist/antd.css';
+//import '../node_modules/antd/dist/antd.css';
 import './btns-dificulty.css'
 import { Radio, Checkbox } from 'antd';
 

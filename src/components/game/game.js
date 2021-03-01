@@ -34,7 +34,7 @@ export default function Game(props) {
                 <Timer gameStatus={gameStatus}/>
             </div>
             <div className="game-grid">
-                <Grid difficulty={props.difficulty} finishedGame={finishedGame} />
+                <Grid startField={props.startField} finishedGame={finishedGame} />
             </div> 
             {gameIsFinished? <WinMessage/> : null}
             

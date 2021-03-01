@@ -7,8 +7,9 @@ import {
   MenuFoldOutlined,
   ControlOutlined
 } from '@ant-design/icons';
-import 'antd/dist/antd.css';
+//import '../score/node_modules/antd/dist/antd.css';
 import './menu.css'
+import { Link } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 
@@ -36,20 +37,22 @@ export default class App extends Component {
           defaultOpenKeys={['sub1']}
           mode="inline"
           theme="dark"
-          inlineCollapsed={this.state.collapsed}
-        >
-          <Menu.Item key="1" icon={<RightSquareOutlined />}
-          onClick={() => this.props.onStartNewGame()}>
-            New Game
+          inlineCollapsed={this.state.collapsed}>
+
+          <Menu.Item key="new-game" icon={<RightSquareOutlined />}>
+          {/* onClick={() => this.props.onStartNewGame()}> */}
+          <Link to="/" />
+          New Game
           </Menu.Item>
 
-          <Menu.Item key="2" icon={<BarChartOutlined />}
-           onClick={() => this.props.onShowScore()}>
-            Score
+          <Menu.Item key="score" icon={<BarChartOutlined />}>
+          <Link to="/score" />
+          Score
           </Menu.Item>
 
-          <Menu.Item key="3" icon={<ControlOutlined />}>
-            Settings
+          <Menu.Item key="settings" icon={<ControlOutlined />}>
+          Settings
+          <Link to="/settings" />
           </Menu.Item>
           {/* <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
             <Menu.Item key="5">Option 5</Menu.Item>

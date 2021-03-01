@@ -1,11 +1,13 @@
 import React from 'react';
 import './btn-start-game.css'
+import { Link } from 'react-router-dom';
 
-export default function NewGameBtn(props){
+export default function NewGameBtn(){
     return (
-    <button className="new-game-btn"
-        onClick={ () => {props.showDifficultyBtns()}}
-    >
-    New game
-    </button>)
+        <Link to="/new-game">
+            <button className="new-game-btn">
+                New game
+            </button>
+        </Link>
+    )
 }

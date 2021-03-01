@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Grid from '../grid'
-import PauseGameBtn from "../btn-pause-game";
+// import PauseGameBtn from "../btn-pause-game";
 import Timer from '../timer';
 import WinMessage from '../win-message'
 import './game.css'

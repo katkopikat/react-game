@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 //import '../score/node_modules/antd/dist/antd.css';
-import { Result, Button } from 'antd';
+import { Result } from 'antd';
 import NewGameBtn from '../btn-new-game';
 import './win-message.css'
 
@@ -18,11 +19,10 @@ export default function WinMessage(){
                 subTitle="Hey! You're awesome! You solved sudoku!
                 Maybe play more?"
                 extra={[
+                <Link to="/new-game">
+                    < NewGameBtn />
+                </Link>
 
-                < NewGameBtn />
-                // <Button type="primary" key="console" className="btns">
-                // New Game
-                // </Button>
                 ]}
                 />
              </div>

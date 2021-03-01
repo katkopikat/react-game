@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import 'antd/dist/antd.css';
 import { Table, Tag } from 'antd';
+import 'antd/dist/antd.css';
 import './score.css'
 
 
@@ -9,8 +9,11 @@ const getResultsfromLS = () => {
   let j = 1;
   for (let key in localStorage) {
     if (key.match(/result/)) {
-      res.push(JSON.parse(localStorage.getItem(`result${j}`)));
-      j += 1;
+      let obj = JSON.parse(localStorage.getItem(`result${j}`)); 
+      if (!obj.time.match(/0:00:00/)){  // TO DO!!! ЭТО ВРЕМЕННЫЙ КОСТЫЛЬ
+        res.push(obj);
+        j += 1;
+      }
     }
   }
   return res;
@@ -38,9 +41,9 @@ export default function Score(){
             tags: ['You haven`t results yet']
           }
         )
-      if(arrayRes.length >= 10) arrayRes.length = 10;
+      if (arrayRes.length >= 10) arrayRes.length = 10;
 
-      setResultsArray(arrayRes)
+      setResultsArray(arrayRes);
     }, [])
     
     const columns = [

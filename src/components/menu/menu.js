@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, Button } from 'antd';
 import {
   RightSquareOutlined,
@@ -10,15 +11,12 @@ import {
 } from '@ant-design/icons';
 //import '../score/node_modules/antd/dist/antd.css';
 
-import { Link } from 'react-router-dom';
+
 import './menu.css'
 
+import checkGameInLS from '../../helpers/checkLS';
+
 const { SubMenu } = Menu;
-
-
-
-//Запустить отображение в полноэкранном режиме
- 
 
 
 export default class App extends Component {
@@ -29,16 +27,16 @@ export default class App extends Component {
     };
   }
 
-  checkGameInLS = () => {
-    let i = 0;
-    for (let key in localStorage) {
-      console.log(key)
-      if(key.match(/sudoku/)){
-        i+=1;
-      }    
-  }
-  return i ? true : false;
-}
+//   checkGameInLS = () => {
+//     let i = 0;
+//     for (let key in localStorage) {
+//       console.log(key)
+//       if(key.match(/sudoku/)){
+//         i+=1;
+//       }    
+//   }
+//   return i ? true : false;
+// }
   // toggleCollapsed = () => {
   //   this.setState({
   //     collapsed: !this.state.collapsed,
@@ -73,7 +71,7 @@ export default class App extends Component {
           inlineCollapsed={this.state.collapsed}>
 
           <Menu.Item key="new-game" icon={<RightSquareOutlined />}>
-          <Link to={() => this.checkGameInLS() ? '/load-game' : '/new-game'}/>
+          <Link to={() => checkGameInLS() ? '/load-game' : '/new-game'}/>
           Game
           </Menu.Item>
 

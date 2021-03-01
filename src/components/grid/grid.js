@@ -21,9 +21,13 @@ export default function Grid(props){
 
     setTimeout(()=> {
         window.addEventListener('unload', function() {
-            if(!finishedGame){
+         //   if(!finishedGame){
                 localStorage.setItem('sudoku', JSON.stringify({currentField}) )
-            }
+                if(difficulty){
+                    localStorage.setItem('diffuculty', difficulty);
+                }
+                
+        //   }
         });
     }, 0)
 
@@ -72,7 +76,7 @@ export default function Grid(props){
         setCurrentField(arr)
 
         let isFinishGame = currentField.filter((el) => { return el.error === 'true' || !el.value}).length;
-        if(!isFinishGame) {finishedGame(true); console.log('Выиграли')};
+        if(!isFinishGame) {finishedGame(true)};
     }
 
     return ( 

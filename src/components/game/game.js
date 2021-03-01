@@ -46,7 +46,7 @@ const { continueGame, difficulty } = props;
     }
 
     return (
-        <div>
+        <div className="wrapper-game">
            <div className="wrapper-pause-timer">
                 <button className="pause-btn"
                 onClick={ () => toggleStatusGame()}

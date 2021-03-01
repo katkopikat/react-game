@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function LoadGameBtn(props){
     return (
-        <Link to="/game">
+        <Link to="/game" exact>
             <button
                 className="new-game-btn"
                 onClick={() => { props.checkIsContinue(true)} }>

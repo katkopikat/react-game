@@ -41,8 +41,8 @@ export default class App extends Component {
 
           <Menu.Item key="new-game" icon={<RightSquareOutlined />}>
           {/* onClick={() => this.props.onStartNewGame()}> */}
-          <Link to="/" />
-          New Game
+          <Link to="/" exact/>
+          Game
           </Menu.Item>
 
           <Menu.Item key="score" icon={<BarChartOutlined />}>

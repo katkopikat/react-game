@@ -20,6 +20,7 @@ function App() {
       if(key.match(/sudoku/)){
         i++;
       }
+      console.log('i', i)
       return i ? true : false;
   }
 }
@@ -40,7 +41,10 @@ function App() {
             <Route path="/game" render={ () => <Game continueGame={continueGame}/> }/>
             <Route path="/score" component={Score} />
             <Route path="/settings" component={Settings}  />
-            { checkGameInLS() ? <Redirect from='/' to='/load-game' exact/> : <Redirect from='/' to='/new-game' exact/>}
+             {/* { checkGameInLS() ? <Redirect from='/' to='/load-game' exact/> : <Redirect from='/' to='/new-game' exact/>}  */}
+
+             <Redirect from='/' to={checkGameInLS() ? '/load-game' : '/new-game'} exact/>
+
         </Router>
       </header>
     </div>

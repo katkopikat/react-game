@@ -4,6 +4,8 @@ import LoadGameBtn from '../btn-load-game';
 
 export default function LoadGame(props){
 
+    console.log('LOAD GAME')
+
     return (
         <div className="game-wrapper">
             <h1 className="main-heading"> Let`s Sudoku! </h1>

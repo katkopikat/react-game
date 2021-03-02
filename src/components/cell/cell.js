@@ -9,8 +9,6 @@ export default function Cell(props){
     let {x, y, s, id, value, readOnly, currentValues, setValueInCurruentField, onSelectCell, error, settings } = props;
     const [numberValue, setUserNumber] = useState(String(value) || '');
     const [errorStatus, setErrorStatus] = useState(error);
-
-
     const [volumeSound, setVolumeSounds] = useState(settings.volumeSounds);
     const [soundsIsOn, setSoundsIsOn] = useState(settings.sounds);
 

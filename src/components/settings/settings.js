@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Checkbox, Switch, Slider } from 'antd';
-
+import useSound from 'use-sound';
+import mainSound from '../../assets/sounds/main.mp3'
 import './settings.css'
 
 
+
 export default function Settings(props){
+
+
  const { handleSetSettings, settings } = props;
+ 
+ //const [volumeSound, setVolumeSounds] = useState(settings.volumeMusic);
+ const [musicIsOn, setMusicIsOn] = useState(settings.music);
+
+
+ //let [playMainSound] = useSound(mainSound, { volume: volumeSound })
+ const [play, { stop }] = useSound(mainSound, { volume: settings.volumeMusic});
+  
 
     const handleSetSoundsOn = (checked) => {
        handleSetSettings ({...settings, sounds : checked })
@@ -13,19 +25,27 @@ export default function Settings(props){
 
     const handleSetMusicOn = (checked) => {
         handleSetSettings ({...settings, music : checked })
+        setMusicIsOn(checked)
+
+        !musicIsOn ? play() : stop();
     }
 
     const handleChangeSoundVolume = value => {
         handleSetSettings ({...settings, volumeSounds : value/100 })
-      };
+    };
    
-    const handleChangeSoundMusic = value => {
+    const handleChangeMusicVolume = value => {
         handleSetSettings ({...settings, volumeMusic : value/100 })
-      };
+    };
 
     function onChangeShowHint(e) {
         handleSetSettings ({...settings, showHints : e.target.checked })
     }
+
+ 
+
+
+
     
     return(
         <div className="settings-wrapper">
@@ -33,7 +53,7 @@ export default function Settings(props){
             <div> 
                 <h3> Music </h3>
                 <Switch checkedChildren="on" unCheckedChildren="off" onChange={handleSetMusicOn} checked={settings.music}/>
-                <Slider defaultValue={settings.volumeMusic*100} onChange={handleChangeSoundMusic}/>
+                <Slider defaultValue={settings.volumeMusic*100} onChange={handleChangeMusicVolume}/>
 
                 <h3> Sounds </h3>
                 <Switch checkedChildren="on" unCheckedChildren="off" onChange={handleSetSoundsOn} checked={settings.sounds}/>

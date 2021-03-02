@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '../grid'
 import Timer from '../timer';
 import WinMessage from '../win-message'
 import randomGeneratedField from '../grid/randomGenerated';
 import './game.css'
+
 
 export default function Game(props) {
   const { continueGame, difficulty, settings } = props;
@@ -11,6 +12,7 @@ export default function Game(props) {
   const [startField, setStartField] = useState([]); 
   const [gameStatus, setGameStatus] = useState('non-started'); // not-startded --> process --> paused --> process 
   //const [isMounted, setIsMounted] = useState(false);
+
 
 
 

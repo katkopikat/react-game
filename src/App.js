@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import useSound from 'use-sound';
+
 
 import Menu from './components/menu/menu';
 import NewGame from './components/new-game';
@@ -11,7 +11,6 @@ import Settings from './components/settings'
 import checkGameInLS from './helpers/checkLS'
 
 import './App.css';
-import mainSound from './assets/sounds/main.mp3'
 
 function App() {
   const [continueGame, setContinueGame] = useState(false);
@@ -23,16 +22,11 @@ function App() {
                                     showHints: true
   })
 
-  const [volumeSound, setVolumeSounds] = useState(settings.volumeMusic);
-  const [musicIsOn, setMusicIsOn] = useState(settings.music);
 
   const handleSetSettings = (obj) => {
     setSettings(obj)
   }
 
-  let [playMainSound] = useSound(mainSound, {
-        volume: volumeSound,
-  })
 
   const checkIsContinue = (value) => { setContinueGame(value)}
 

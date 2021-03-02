@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { Checkbox, Switch, Slider } from 'antd';
 import useSound from 'use-sound';
 import mainSound from '../../assets/sounds/main.mp3'
@@ -7,26 +7,19 @@ import './settings.css'
 
 
 export default function Settings(props){
-
-
  const { handleSetSettings, settings } = props;
- 
- //const [volumeSound, setVolumeSounds] = useState(settings.volumeMusic);
+
  const [musicIsOn, setMusicIsOn] = useState(settings.music);
-
-
- //let [playMainSound] = useSound(mainSound, { volume: volumeSound })
  const [play, { stop }] = useSound(mainSound, { volume: settings.volumeMusic});
   
-
     const handleSetSoundsOn = (checked) => {
        handleSetSettings ({...settings, sounds : checked })
     }
 
     const handleSetMusicOn = (checked) => {
         handleSetSettings ({...settings, music : checked })
+        
         setMusicIsOn(checked)
-
         !musicIsOn ? play() : stop();
     }
 
@@ -42,11 +35,6 @@ export default function Settings(props){
         handleSetSettings ({...settings, showHints : e.target.checked })
     }
 
- 
-
-
-
-    
     return(
         <div className="settings-wrapper">
             <h1>Settings</h1>

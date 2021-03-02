@@ -1,12 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
-
+import React, { useState } from 'react';
 import Game from '../game';
 import Difficulty from '../btns-difficulty';
 
 export default function NewGame(props){
     const { settings } = props;
-    
     const [startNemGame, setStartedGame] = useState(false);
     const [difficulty, setDifficulty] = useState(null);
 

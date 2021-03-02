@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-
 
 import Menu from './components/menu/menu';
 import NewGame from './components/new-game';
@@ -22,39 +21,15 @@ function App() {
                                     showHints: true
   })
 
-
-  const handleSetSettings = (obj) => {
-    setSettings(obj)
-  }
-
-
+  const handleSetSettings = (obj) => { setSettings(obj) }
   const checkIsContinue = (value) => { setContinueGame(value)}
-
-  // useEffect(() => { 
-  //   setMusicIsOn(true)
-    
-  //   let [playMainSound] = useSound(mainSound, { volume: volumeSound, })
-
-  //   if(musicIsOn) {
-  //     playMainSound();
-  //   } else {
-  //     useSound(null)
-  //   }
-
-  // }, [settings.music])
-
-  // useEffect(() => { 
-  //   setMusicIsOn(settings.music)
-  //   setVolumeSounds(settings.volumeMusic)
-  // }, [settings.music, settings.volumeMusic ])
-  // //handleSetSound();
 
   return (
     <div className="App">
       <header className="App-header">
         <Router>
         <Menu />
-            <Redirect from='/' to={ checkGameInLS() ? '/load-game' : '/new-game'} exact/>
+            <Redirect from='/' to={ checkGameInLS() ? '/load-game' : '/new-game'} exact={true} />
             <Route path="/new-game" render={ () => <NewGame settings={settings}/> }/>
             <Route path="/load-game" render={ () => <LoadGame checkIsContinue={checkIsContinue}/> }/>
             <Route path="/game" render={ () => <Game continueGame={continueGame} settings={settings}/> }/>

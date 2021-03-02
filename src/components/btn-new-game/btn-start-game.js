@@ -13,7 +13,7 @@ export default function NewGameBtn(){
     }
     
     return (
-        <Link to="/new-game" exact>
+        <Link to="/new-game">
             <button className="new-game-btn"
                     onClick={() => clearLastGameData()}> 
                      New game

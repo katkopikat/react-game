@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Tag } from 'antd';
-import 'antd/dist/antd.css';
+//import 'antd/dist/antd.css';
 import './score.css'
 
 

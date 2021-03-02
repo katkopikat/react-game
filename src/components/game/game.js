@@ -6,7 +6,7 @@ import randomGeneratedField from '../grid/randomGenerated';
 import './game.css'
 
 export default function Game(props) {
-  const { continueGame, difficulty } = props;
+  const { continueGame, difficulty, settings } = props;
   const [gameIsFinished, setGameIsFinished] = useState(false);
   const [startField, setStartField] = useState([]); 
   const [gameStatus, setGameStatus] = useState('non-started'); // not-startded --> process --> paused --> process 
@@ -39,7 +39,7 @@ export default function Game(props) {
       generateStartField();
      // setIsMounted(true);
     }, [])
-    
+
     const toggleStatusGame = () => {
         if(gameStatus === 'process') setGameStatus('paused');
         else if(gameStatus === 'paused') setGameStatus('process');
@@ -63,7 +63,7 @@ export default function Game(props) {
             </div>
             <div className="game-grid">
           
-            <Grid startField={startField} finishedGame={finishedGame} difficulty={difficulty} />
+            <Grid startField={startField} finishedGame={finishedGame} difficulty={difficulty} settings={settings}/>
             </div> 
             {gameIsFinished? <WinMessage/> : null}
             

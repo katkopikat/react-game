@@ -6,30 +6,33 @@ import clickSound from '../../assets/sounds/soundClick.wav'
 import pressSound from '../../assets/sounds/soundKey.wav'
 
 export default function Cell(props){
-    let {x, y, s, id, value, readOnly, currentValues, setValueInCurruentField, onSelectCell, error } = props;
+    let {x, y, s, id, value, readOnly, currentValues, setValueInCurruentField, onSelectCell, error, settings } = props;
     const [numberValue, setUserNumber] = useState(String(value) || '');
     const [errorStatus, setErrorStatus] = useState(error);
 
-    const [playbackRate, setPlaybackRate] = React.useState(0.75);
 
-    const [playClick] = useSound(clickSound, {
-        playbackRate,
-        volume: 0.5,
-    });
+    const [volumeSound, setVolumeSounds] = useState(settings.volumeSounds);
+    const [soundsIsOn, setSoundsIsOn] = useState(settings.sounds);
 
-    const [playPress] = useSound(pressSound, {
-        playbackRate,
-        volume: 0.5,
-    });
+    const [playClick] = useSound(clickSound, { volume: settings.volumeSounds});
+
+    useEffect(() => {
+        setVolumeSounds(settings.volumeSounds);
+        setSoundsIsOn(settings.sounds)
+    }, [settings])
+    
+    const [playPress] = useSound(pressSound, { volume: volumeSound });
 
     const handleClickSound = () => {
-        setPlaybackRate(playbackRate + 0.1);
-        playClick();
+        if(soundsIsOn){
+            playClick();
+        }
     };
 
     const handlePressSound = () => {
-        setPlaybackRate(playbackRate + 0.1);
+        if(soundsIsOn){
         playPress();
+        }
     };
 
     useEffect(() => {
@@ -67,10 +70,8 @@ export default function Cell(props){
     return (
           <input
           type="number"
-          //className="cell-input"
           error={errorStatus}
-          className={error == 'true' ?'cell-input error': 'cell-input'}
-         // className={error? 'cell-input' : 'cell-input error'}
+          className={error === 'true' && settings.showHints? 'cell-input error': 'cell-input'}
           x={x}
           y={y}
           s={s}
@@ -78,9 +79,6 @@ export default function Cell(props){
           key={id}
           value={String(numberValue)}
           readOnly={readOnly}
-          
-        //  selectedCell={selected}
-
           onFocus={ (e) => {setColorSelected(e);
                             onSelectCell(e.target)
                             handleClickSound();

@@ -10,7 +10,7 @@ import './grid.css';
 //     //                         .map(x => Number(x))
 
 export default function Grid(props){
-    const {startField, finishedGame, difficulty} = props;
+    const {startField, finishedGame, difficulty, settings} = props;
 
     const [selRow, setSelectedRow] = useState(null);
     const [selCol, setSelectedCol] = useState(null);
@@ -93,6 +93,7 @@ export default function Grid(props){
                 currentValues={currentValues}
                 onSelectCell={onSelectCell}
                 setValueInCurruentField={setValueInCurruentField}
+                settings={settings}
             />
         )
     )

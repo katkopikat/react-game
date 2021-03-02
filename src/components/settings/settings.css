@@ -1,0 +1,39 @@
+.settings-wrapper {
+    width: 450px;
+    background-color: white;
+    text-align: left;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 3px 5px 16px 2px rgb(0 0 0 / 20%) inset;
+}
+
+.settings-wrapper > h1 {
+    color: #e9bf36;
+}
+
+.settings-wrapper > h3 {
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 30px;
+}
+
+.settings-wrapper > .ant-switch {
+    transform: scale(1.2);
+}
+
+.settings-wrapper >  .ant-switch-checked {
+    background-color: #e9bf36;
+}
+
+
+.settings-wrapper > .ant-slider-track {
+    background-color: #e9bf36;
+}
+
+.settings-wrapper >  .ant-slider-handle:focus {
+    border-color: #e9bf36;
+}
+
+.settings-wrapper > .ant-slider-handle {
+    border: solid 2px #e9bf36;
+}

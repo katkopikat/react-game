@@ -200,6 +200,13 @@
   transform: scale(1.5);
 }
 
+
+:-webkit-full-screen body{
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* 
 #root:-moz-full-screen {
   background: red;
-}
+} */

@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Tag } from 'antd';
-//import 'antd/dist/antd.css';
-//import './score.css'
-
 
 const getResultsfromLS = () => {
   let res = [];
@@ -52,7 +49,7 @@ export default function Score(){
           dataIndex: 'time',
           date: 'date',
           key: 'time',
-          render: text => <a>{text}</a>,
+          render: text => <span>{text}</span>,
         },
         {
           title: 'Difficulty',
@@ -79,7 +76,7 @@ export default function Score(){
           dataIndex: 'date',
           date: 'date',
           key: 'date',
-          render: text => <a>{text.substr(0, 10)}</a>,
+          render: text => <span>{text.substr(0, 10)}</span>,
         },
     ];
       

@@ -26,18 +26,25 @@ export default function Settings(props){
                 <Slider defaultValue={settings.volumeSounds*100}
                         onChange={(value) => handleSetSettings ({...settings, volumeSounds : value/100 })}/>
 
-                <h4> Game hints </h4>
-                <Checkbox onChange={ (e) => handleSetSettings ({...settings, showHints : e.target.checked })}
-                        className="checkbox-hint"
-                        defaultChecked> 
-                        Show error hint?
-                </Checkbox>
                 <h4> Theme </h4>
                 <Switch checkedChildren="light"
                         unCheckedChildren="dark"
                         onChange={(checked) => handleSetSettings ({...settings, theme : checked }) }
                         checked={settings.theme}
                         />
+
+                <h4> Game hints </h4>
+                <Checkbox onChange={ (e) => handleSetSettings ({...settings, showError : e.target.checked })}
+                        className="checkbox-hint"
+                        checked={settings.showError}> 
+                        Show error hint?
+                </Checkbox>
+
+                <Checkbox onChange={ (e) => handleSetSettings ({...settings, showSelect: e.target.checked })}
+                        className="checkbox-hint"
+                        checked={settings.showSelect}> 
+                        Show select hint?
+                </Checkbox>
             </div>
         </div>
     )

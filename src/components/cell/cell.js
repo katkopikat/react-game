@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-//import './cell.css'
 
 import useSound from 'use-sound';
 import clickSound from '../../assets/sounds/soundClick.wav'
@@ -20,8 +19,6 @@ export default function Cell(props){
         setSoundsIsOn(settings.sounds)
     }, [settings])
     
-  
-
     const handleClickSound = () => {
         if(soundsIsOn){
             playClick();
@@ -40,13 +37,12 @@ export default function Cell(props){
 
 
     const setColorSelected = (e) =>{
-        e.target.classList.add('selected');
+            e.target.classList.add('selected');
     }
     
     const setColorUnselected = e =>{
         e.target.className='cell-input'
-
-        if (errorStatus ==='true') e.target.classList.add('error');
+        if (errorStatus ==='true' && settings.showError) e.target.classList.add('error');
     }
 
     const toggleErrorStatus= cell => {
@@ -70,7 +66,7 @@ export default function Cell(props){
           <input
           type="number"
           error={errorStatus}
-          className={error === 'true' && settings.showHints? 'cell-input error': 'cell-input'}
+          className={error === 'true' && settings.showError? 'cell-input error': 'cell-input'}
           x={x}
           y={y}
           s={s}

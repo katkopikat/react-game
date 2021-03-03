@@ -10,7 +10,7 @@ import Cell from '../cell';
 //     //                         .map(x => Number(x))
 
 export default function Grid(props){
-    const {startField, finishedGame, difficulty, settings} = props;
+    const {startField, finishedGame, settings} = props;
 
     const [selRow, setSelectedRow] = useState(null);
     const [selCol, setSelectedCol] = useState(null);
@@ -19,25 +19,18 @@ export default function Grid(props){
     const [currentValues, setValues] = useState([]);
     const [currentField, setCurrentField] = useState(startField);
 
-    setTimeout(()=> {
-        window.addEventListener('unload', function() {
-         //   if(!finishedGame){
-                localStorage.setItem('sudoku', JSON.stringify({currentField}) )
-                if(difficulty){
-                    localStorage.setItem('diffuculty', difficulty);
-                }
-                
-        //   }
-        });
-    }, 0)
-
     useEffect(() => {
         setCurrentField(startField);
     },[]);
+
+    
+    useEffect(() => {
+        localStorage.setItem('sudoku', JSON.stringify({currentField}) )
+    },[currentField]);
     
     useEffect(() => {
         if(selectedCell){
-          document.querySelectorAll('.sub-selected').forEach(it => it.classList.remove('sub-selected'));
+        if(settings.showSelect) document.querySelectorAll('.sub-selected').forEach(it => it.classList.remove('sub-selected'));
 
           const rowElements = findElementInDOM('x');
           const colElements = findElementInDOM('y');
@@ -54,7 +47,7 @@ export default function Grid(props){
        let values = [];
        if(selRow){
          [...selRow, ...selCol, ...selSegm].forEach(it => {
-             it.classList.add('sub-selected');
+             if(settings.showSelect) it.classList.add('sub-selected');
              if(it.value) values.push(it.value);
            });
        }

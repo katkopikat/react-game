@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 export default function Timer (props){
   
-    const { gameStatus, continueGame, gameIsFinished, difficulty } = props;
+    const { gameStatus, setGameStatus, continueGame, gameIsFinished, difficulty } = props;
 
     let [hours, setTimerHours] = useState(0);
     let [minutes, setTimerMinutes] = useState(0);
@@ -12,12 +12,7 @@ export default function Timer (props){
     let [timerText, setTimerText] = useState('0:00:00');
     let [timePaused, setTimePaused] = useState(continueGame ? +localStorage.getItem('timer') : 0);
 
-    
-    setTimeout(()=> {
-      window.addEventListener('unload', function() {
-          localStorage.setItem('timer', timePaused)
-      });
-  }, 0)
+    useEffect(() => { localStorage.setItem('timer', timePaused)}, [timerText])
 
     useEffect(()=> {
       const timer = setInterval(() => {
@@ -45,6 +40,7 @@ export default function Timer (props){
       }
 
       if(gameIsFinished) {
+        setGameStatus('finished')
         localStorage.setItem(`result${i+1}`, JSON.stringify({time: timerText, tags: [difficulty || localStorage.getItem('difficulty')], date: new Date(), key: i+1}))
         localStorage.removeItem('timer')
         localStorage.removeItem('sudoku');

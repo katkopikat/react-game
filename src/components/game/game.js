@@ -11,7 +11,7 @@ export default function Game(props) {
   const [gameIsFinished, setGameIsFinished] = useState(false);
   const [startField, setStartField] = useState([]); 
   const [gameStatus, setGameStatus] = useState('non-started'); 
-  // not-startded --> process --> paused --> process 
+  // not-startded --> process --> paused --> finished 
   
 
     const generateStartField = () => {
@@ -33,6 +33,7 @@ export default function Game(props) {
 
     useState(() => {
       generateStartField();
+      localStorage.setItem('difficulty', `${!continueGame ? difficulty : localStorage.getItem('difficulty')}`)
     }, [])
 
     const toggleStatusGame = () => {
@@ -54,6 +55,7 @@ export default function Game(props) {
                       {gameStatus === 'paused' ? 'Play' : 'Pause'}
               </button>
               <Timer gameStatus={gameStatus}
+                     setGameStatus={setGameStatus}
                      continueGame={continueGame}
                      gameIsFinished={gameIsFinished}
                      difficulty={difficulty}

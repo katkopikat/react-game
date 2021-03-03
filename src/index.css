@@ -6,9 +6,9 @@
   /* --gradient: linear-gradient(-45deg, #212327, #141d30, #151222, #141113); */
   --overlay: #242531;
   --error: #ffaabf;
-  --section-bg: 0.9;
+  --section-bg: #d0d4e0;
   --sub-selected:#ffd036;
-  --selected: rgb(221, 220, 220);
+  --selected: #ffbd36;
 
   --gradient1: #212327;
   --gradient2: #141d30;
@@ -20,6 +20,9 @@
   --switch-bg-checked: #ffd036;
 
   --slider: #ffd036;
+  --circles: 0.2;
+
+  --checkbox: ffd036;
 
 
 }
@@ -31,10 +34,10 @@
   --white: white;
   /* --gradient: linear-gradient(-45deg, #828bff, #7da7fe, #5e8ec9, #eca2f9); */
   --overlay: white;
-  --error: #dc61a59e;
-  --section-bg: 0.75;
-  --sub-selected: rgb(63 83 182 / 9%);
-  --selected: rgb(255 255 255 / 75%);
+  --error: #ecaee9;
+  --section-bg: #d0d4e0;
+  --sub-selected: rgb(187 197 239);
+  --selected: #87a7ff;
 
   --gradient1: #828bff;
   --gradient2: #7da7fe;
@@ -46,6 +49,10 @@
   --switch-bg-checked: #5c83dd;
 
   --slider: #91d5ff;
+  --circles: 0.5;
+
+  
+  --checkbox: #5c83dd52;
 }
 
 
@@ -123,9 +130,9 @@ body {
     z-index: 20;
 }
 
-.ant-checkbox-input:focus + .ant-checkbox-inner{
-    background: var(--yellow) ;
-    border-color: var(--yellow);
+.ant-checkbox-inner{
+    background: var(--checkbox) ;
+    border-color: var(--checkbox);
 }
 
 .checkbox-hint{
@@ -164,12 +171,17 @@ input[type="number"]::-webkit-inner-spin-button {
 margin: 0;
 }
 
-.selected{
-  background-color:  var(--selected);
+
+input[s='2'], input[s='4'], input[s='6'], input[s='8']{
+  background-color: var(--section-bg)
 }
 
 .sub-selected{
-  background-color: var(--sub-selected)
+  background-color: var(--sub-selected)!important;
+}
+
+.selected{
+  background-color:  var(--selected)!important;
 }
 
 :active, :hover, :focus {
@@ -181,9 +193,6 @@ margin: 0;
   background-color:var(--error);
 }
 
-input[s='2'], input[s='4'], input[s='6'], input[s='8']{
-  opacity: var(--section-bg)
-}
 
 input:read-only{
   color: rgb(129, 129, 129);
@@ -246,8 +255,8 @@ input:read-only{
   background: #ffffff;
   width: 450px;
 }
-a {
-  color: var(--black);
+.ant-table-cell, .ant-table-cell span {
+ 
   font-size: 18px;
 }
 
@@ -255,6 +264,9 @@ a {
   display: none;
 }
 
+.ant-table-tbody > tr > td {
+  padding: 12px 20px;
+}
 
 .ant-table-thead > tr > th {
   background-color: var(--yellow);
@@ -566,6 +578,10 @@ a {
     color: var(--white);
   }
 
+  .circles{
+    opacity: var(--circles);
+  }
+
   .circles li{
     position: absolute;
     display: block;
@@ -583,3 +599,43 @@ a {
     font-size: 22px;
   }
   
+
+  .footer {
+    height: 55px;
+  }
+  
+  .wrapper--footer {
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .git_year__wrapper {
+    padding: 0.8rem 0 0 1.8rem;
+    font-size: 12px;
+  }
+  
+  .git_link {
+    text-decoration: none;
+    font-size: 12px;
+    color: var(--white);
+  }
+  
+  .git_link:hover {
+    color: var(--yellow);
+  }
+  
+  .year {
+    color:gray;
+  }
+  
+  .logo__img {
+    height: 23px;
+    opacity: 0.3;
+    margin-top: 0.8rem;
+    margin-right: 0.5rem;
+  }
+  
+  .logo__img:hover {
+    opacity: 0.7;
+  }

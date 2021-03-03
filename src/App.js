@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import useSound from 'use-sound';
 
-import Menu from './components/menu/menu';
+import Navigation from './components/menu/menu';
 import NewGame from './components/new-game';
 import LoadGame from './components/load-game';
 import Game from './components/game';
@@ -13,6 +13,8 @@ import checkGameInLS from './helpers/checkLS'
 import mainSound from './assets/sounds/main.mp3'
 import './App.css';
 
+
+
 function App() {
   const [continueGame, setContinueGame] = useState(false);
   const [settings, setSettings] = useState({
@@ -20,12 +22,13 @@ function App() {
                                     music: false,
                                     volumeSounds: 0.5,
                                     volumeMusic: 0.5,
-                                    showHints: true,
+                                    showError: true,
+                                    showSelect: true,
                                     theme: false
                           
   })
 
-  const [play, { stop }] = useSound(mainSound, { volume: settings.volumeMusic});
+  const [play, { stop }] = useSound(mainSound, { volume: settings.volumeMusic, loop: true});
 
   useEffect(() => { settings.music ? play() : stop() }, [settings.music])
   useEffect(() => { document.documentElement.setAttribute('theme', (settings.theme ? 'light' : 'dark'))}, [settings.theme])
@@ -33,11 +36,12 @@ function App() {
   const handleSetSettings = (obj) => { setSettings(obj) }
   const checkIsContinue = (value) => { setContinueGame(value)}
 
+
   return (
     <div className="App">
       <header className="App-header">
       <Router>
-        <Menu />
+        <Navigation />
         <Switch>
             <Redirect from='/' to={ checkGameInLS() ? '/load-game' : '/new-game'} exact={true} />
             <Route path="/new-game" render={ () => <NewGame settings={settings}/> }/>

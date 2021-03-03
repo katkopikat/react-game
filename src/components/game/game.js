@@ -10,7 +10,9 @@ export default function Game(props) {
   const { continueGame, difficulty, settings } = props;
   const [gameIsFinished, setGameIsFinished] = useState(false);
   const [startField, setStartField] = useState([]); 
-  const [gameStatus, setGameStatus] = useState('non-started'); // not-startded --> process --> paused --> process 
+  const [gameStatus, setGameStatus] = useState('non-started'); 
+  // not-startded --> process --> paused --> process 
+  
 
     const generateStartField = () => {
       let arr;

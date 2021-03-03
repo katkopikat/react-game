@@ -13,8 +13,6 @@ import checkGameInLS from './helpers/checkLS'
 import mainSound from './assets/sounds/main.mp3'
 import './App.css';
 
-
-
 function App() {
   const [continueGame, setContinueGame] = useState(false);
   const [settings, setSettings] = useState({
@@ -26,7 +24,6 @@ function App() {
                                     showSelect: true,
                                     showEqualValue: false,
                                     theme: false
-                          
   })
 
   const [play, { stop }] = useSound(mainSound, { volume: settings.volumeMusic, loop: true});
@@ -36,7 +33,6 @@ function App() {
 
   const handleSetSettings = (obj) => { setSettings(obj) }
   const checkIsContinue = (value) => { setContinueGame(value)}
-
 
   return (
     <div className="App">

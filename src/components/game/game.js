@@ -21,24 +21,20 @@ export default function Game(props) {
           } 
         }
       } else if (!continueGame) {
-          arr = randomGeneratedField(difficulty);
+        arr = randomGeneratedField(difficulty);
       }
       setStartField(arr)
       setGameStatus('process');
       setGameIsFinished(false)
-    }
+    };
 
     useState(() => {
-      generateStartField();
-      // TO DO! ОБРАБОТАТЬ СЛОЖНОСТЬ В LS - КОСТЫЛЬ
-      let LSDiffuculty = localStorage.getItem('difficulty');
-      let difficultyFromLS = LSDiffuculty && LSDiffuculty !== 'undefined'? localStorage.getItem('difficulty') : 'medium';
-
-      localStorage.setItem('difficulty', `${!continueGame && difficulty ? difficulty : difficultyFromLS}`)
-
-      // window.onstorage = event => {
-      //   console.log(event.url);
-      // };
+        generateStartField();
+        // TO DO! ОБРАБОТАТЬ СЛОЖНОСТЬ В LS - КОСТЫЛЬ
+        let diffucultyLS = localStorage.getItem('difficulty');
+        let difficultyFromLS = diffucultyLS && diffucultyLS !== 'undefined'? localStorage.getItem('difficulty') : 'medium';
+  
+        localStorage.setItem('difficulty', `${!continueGame && difficulty ? difficulty : difficultyFromLS}`);
     }, [])
 
     const toggleStatusGame = () => {
@@ -47,9 +43,7 @@ export default function Game(props) {
         else setGameStatus('paused');
     }
 
-    const finishedGame = (status) => {
-      setGameIsFinished(status);
-    }
+    const finishedGame = (status) => { setGameIsFinished(status)}
 
     return (
         <div className="wrapper-game">

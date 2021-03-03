@@ -12,7 +12,4 @@ import { Radio } from 'antd';
         <Radio.Button value="hard" className="btn-difficulty">Hard</Radio.Button>
       </Radio.Group>
     </div>)
-
  }
-
- //defaultValue="medium"

@@ -7,21 +7,21 @@ export default function WinMessage(){
 
     return(
         <div>
-        <div className="message-wrapper">
-            <div className="win-message">
-                <div className="icon-animation">
-                    <span className="icon-animation-text"/>
-                </div>
-                <Result
-                title="You win!"
-                subTitle="Hey! You're awesome! You solved sudoku! Maybe play more?"
-                >
-                   </Result>
-                   <Link exact={'true'} to="/" >
+            <div className="message-wrapper">
+                <div className="win-message">
+                    <div className="icon-animation">
+                        <span className="icon-animation-text"/>
+                    </div>
+                    <Result
+                    title="You win!"
+                    subTitle="Hey! You're awesome! You solved sudoku! Maybe play more?"
+                    >
+                    </Result>
+                    <Link exact={'true'} to="/" >
                         < NewGameBtn />
-                   </Link>
-             </div>
-        </div>
+                    </Link>
+                </div>
+            </div>
         <div className="overlay"/>
     </div>
     )

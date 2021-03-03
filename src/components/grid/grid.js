@@ -3,7 +3,6 @@ import Cell from '../cell';
 
 export default function Grid(props){
     const {startField, finishedGame, settings} = props;
-
     const [selRow, setSelectedRow] = useState(null);
     const [selCol, setSelectedCol] = useState(null);
     const [selSegm, setSelectedSegmnent] = useState(null);
@@ -12,19 +11,21 @@ export default function Grid(props){
     const [currentValues, setValues] = useState([]);
     const [currentField, setCurrentField] = useState(startField);
 
-    useEffect(() => {
-        setCurrentField(startField);
-    },[]);
+    useEffect(() => { setCurrentField(startField)},[]);
 
-    
+    useEffect(() => { localStorage.removeItem('sudoku')},[finishedGame]);
+
     useEffect(() => {
         localStorage.setItem('sudoku', JSON.stringify({currentField}) )
     },[currentField]);
     
     useEffect(() => {
         if(selectedCell){
-        if(settings.showSelect) document.querySelectorAll('.sub-selected').forEach(it => it.classList.remove('sub-selected'));
-        if(settings.showEqualValue) document.querySelectorAll('.sub-selected-value').forEach(it => it.classList.remove('sub-selected-value'));
+        if(settings.showSelect) document.querySelectorAll('.sub-selected')
+                                        .forEach(it => it.classList.remove('sub-selected'));
+
+        if(settings.showEqualValue) document.querySelectorAll('.sub-selected-value')
+                                             .forEach(it => it.classList.remove('sub-selected-value'));
 
           const rowElements = findElementInDOM('x');
           const colElements = findElementInDOM('y');
@@ -43,14 +44,15 @@ export default function Grid(props){
        let values = [];
        if(selRow){
          [...selRow, ...selCol, ...selSegm].forEach(it => {
-             if(settings.showSelect) it.classList.add('sub-selected');
-             if(it.value) values.push(it.value);
+             if (settings.showSelect) it.classList.add('sub-selected');
+             if (it.value) values.push(it.value);
            });
        }
+
        setValues([...new Set(values)])
 
-      if(settings.showEqualValue && selectedCell && selectedCell.value){
-        selSameValue.forEach(it => { it.classList.add('sub-selected-value') })
+      if (settings.showEqualValue && selectedCell && selectedCell.value){
+            selSameValue.forEach(it => it.classList.add('sub-selected-value') )
       }
 
    }, [selRow]);
@@ -59,6 +61,7 @@ export default function Grid(props){
         const findAttr = selectedCell.getAttribute(`${attr}`);
         return document.querySelectorAll(`input[${attr}="${findAttr}"]`);
     }
+    
     const onSelectCell = (val) => { setSelected(val) }
 
     const setValueInCurruentField = (id, value, status) => {
@@ -70,7 +73,9 @@ export default function Grid(props){
         setCurrentField(arr)
 
         let isFinishGame = currentField.filter((el) => { return el.error === 'true' || !el.value}).length;
-        if(!isFinishGame) {finishedGame(true)};
+        if (!isFinishGame){ 
+            finishedGame(true);
+        };
     }
 
     return ( 

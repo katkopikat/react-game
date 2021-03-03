@@ -3,19 +3,16 @@
   --bg-color: #212327;
   --black: black;
   --white: white;
-  /* --gradient: linear-gradient(-45deg, #212327, #141d30, #151222, #141113); */
   --overlay: #242531;
   --error: #ffaabf;
   --section-bg: #d0d4e0;
   --sub-selected:#ffd036;
   --selected: #ffbd36;
   --sub-selected-value: #abc0e3;
-
   --gradient1: #212327;
   --gradient2: #141d30;
   --gradient3: #151222;
   --gradient4: #141113;
-
   --menu-selected: #ffd036;
   --switch-off: rgb(11 23 67 / 37%);
   --switch-bg-checked: #ffd036;
@@ -30,30 +27,22 @@
   --bg-color: #e2e2e2;
   --black: black;
   --white: white;
-  /* --gradient: linear-gradient(-45deg, #828bff, #7da7fe, #5e8ec9, #eca2f9); */
   --overlay: white;
   --error: #ecaee9;
   --section-bg: #d0d4e0;
   --sub-selected: rgb(187 197 239);
   --selected: #87a7ff;
-
   --gradient1: #828bff;
   --gradient2: #7da7fe;
   --gradient3: #5e8ec9;
   --gradient4: #eca2f9;
-
   --menu-selected: rgb(0 0 0 / 20%);
   --switch-off: rgb(11 23 67 / 37%);
   --switch-bg-checked: #5c83dd;
-
   --slider: #91d5ff;
   --circles: 0.5;
-
-  
   --checkbox: #5c83dd52;
-
   --input-default: rgb(97 97 97);
-
   --sub-selected-value: #a5cee8;
 }
 
@@ -159,7 +148,6 @@ label > .ant-radio-button-wrapper .ant-radio-button-wrapper-checked .btn-difficu
 }
 /* --- BUTTONS END --- */
 
-
 /* --- CELL START --- */
 .cell-input{
   height: 47px;
@@ -196,11 +184,9 @@ input[s='2'], input[s='4'], input[s='6'], input[s='8']{
   background-color: var(--sub-selected-value)!important;
 }
 
-
 .selected{
   background-color:  var(--selected)!important;
 }
-
 
 :active, :hover, :focus {
   outline: 0;
@@ -211,13 +197,10 @@ input[s='2'], input[s='4'], input[s='6'], input[s='8']{
   background-color:var(--error) !important;
 }
 
-
 input:read-only{
   color: var(--input-default)
 }
-
 /* --- CELL END --- */
-
 
 /* --- GAME START  --- */
 .wrapper-pause-timer{
@@ -258,7 +241,6 @@ input:read-only{
 }
 
 .ant-btn-primary, .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  /* background-color: var(--menu-selected) */
   background-color: transparent;
 }
 
@@ -284,7 +266,6 @@ input:read-only{
 /* --- MENU END  --- */
 
 /* --- SCORE START --- */
-
 .ant-table {
   background: #ffffff;
   width: 450px;
@@ -314,7 +295,6 @@ input:read-only{
   text-align: left;
 }
 
-
 .ant-tag {
   font-size: 16px;
   font-weight: 500;
@@ -326,7 +306,6 @@ input:read-only{
 #score-table > tr {
   background: #fafafa;
 }
-
 /* --- SCORE END --- */
 
 /* --- SETTINGS START --- */
@@ -376,8 +355,6 @@ input:read-only{
 .ant-slider-handle, .ant-slider-handle:focus {
   border-color: var(--slider);
 }
-
-
 /* --- SETTINGS END --- */
 
 /* --- TIMER  START--- */
@@ -385,7 +362,6 @@ input:read-only{
   pointer-events: none;
 }
 /* --- TIMER  END--- */
-
 
 /* --- WIN MESSAGE START --- */
 .message-wrapper{
@@ -408,6 +384,7 @@ input:read-only{
   flex-direction: column;
   align-items: center;
 }
+
 .ant-result-icon{
   display: none;
 
@@ -453,10 +430,9 @@ input:read-only{
   }
 }
 
-
-  .ant-result-icon{
-      animation: shake 1s infinite;
-    }
+.ant-result-icon{
+    animation: shake 1s infinite;
+}
 
   .icon-animation{
   z-index: 20;
@@ -468,7 +444,6 @@ input:read-only{
   border: solid 4px var(--yellow);
   justify-content: center;
   align-items: center;
-  /* animation: shake 1s infinite; */
   animation: border 5s linear infinite;
   }
 
@@ -487,107 +462,40 @@ input:read-only{
       padding-bottom: 5px;
   }
 
-
   @keyframes shake {
-      0% {
-        transform: translateY(0px);
-      }
-    
-      50% {
-        transform: translateY(20px);
-      }
-    
-      100% {
-        transform: translateY(0px);
-      }
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(20px); }
+      100% {transform: translateY(0px); }
   }
 
   @keyframes content {
-      0% {
-          content: '7';
-      }
-      10% {
-          content: '2';
-        }
-      20% {
-          content: '5';
-        }
-      30% {
-          content: '6';
-          /* color: var(--yellow);   */
-        }
-      40% {
-          content: '\2713';
-          /* color: #242531; */
-
-        }
-      60% {
-          content: '\2713';
-          /* color: #242531; */
-      }
-      70% {
-          content: '3';
-          /* color: var(--yellow); */
-        }
-      80% {
-          content: '4';
-        }
-      90% {
-          content: '2';
-        }
-      100% {
-          content: '7';
-        }
+      0% { content: '7'}
+      10% {content: '2'; }
+      20% {content: '5'; }
+      30% { content: '6'; }
+      40% {content: '\2713'; }
+      60% {content: '\2713'; }
+      70% {content: '3'; }
+      80% {content: '4'; }
+      90% {content: '2'; }
+      100% {content: '7';}
   }
 
-
   @keyframes border {
-      0% {
-          transform: translateY(0px);
-        }
-
-      10% {
-          transform: translateY(20px);
-      }
-      20% {
-          transform: translateY(0px);
-      }
-
-      30% {
-          transform: translateY(20px);
-          
-        }
-      40% {
-          transform: translateY(0px);
-         
-        }
-        50%{
-          transform: translateY(20px);
-        }
-      60% {
-          transform: translateY(0px);
-         
-      }
-      70% {
-          transform: translateY(20px);
-        }
-
-        80% {
-          transform: translateY(0px);
-      }
-      90% {
-          transform: translateY(20px);
-      }
-      95% {
-          background-color: rgba(36, 37, 49, 0.8); 
-       }
-       100% {
-          transform: translateY(0px);
-       }
+      0% { transform: translateY(0px); }
+      10% { transform: translateY(20px); }
+      20% { transform: translateY(0px); }
+      30% { transform: translateY(20px); }
+      40% { transform: translateY(0px); }
+      50% { transform: translateY(0px); }
+      60% { transform: translateY(20px); }
+      70% { transform: translateY(0px); }
+      80% { transform: translateY(0px); }
+      90% { transform: translateY(20px); }
+      100% { transform: translateY(0px); }
   }
 
   /* --- WIN MESSAGE END --- */
-
   .App-header {
     background-color: #212327;
     min-height: 100vh;
@@ -597,8 +505,6 @@ input:read-only{
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: var(--white);
-  
-    /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
     background: linear-gradient(-45deg, var(--gradient1), var(--gradient2), var(--gradient3), var(--gradient4));
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
@@ -633,43 +539,3 @@ input:read-only{
     font-size: 22px;
   }
   
-
-  .footer {
-    height: 55px;
-  }
-  
-  .wrapper--footer {
-    height: 55px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .git_year__wrapper {
-    padding: 0.8rem 0 0 1.8rem;
-    font-size: 12px;
-  }
-  
-  .git_link {
-    text-decoration: none;
-    font-size: 12px;
-    color: var(--white);
-  }
-  
-  .git_link:hover {
-    color: var(--yellow);
-  }
-  
-  .year {
-    color:gray;
-  }
-  
-  .logo__img {
-    height: 23px;
-    opacity: 0.3;
-    margin-top: 0.8rem;
-    margin-right: 0.5rem;
-  }
-  
-  .logo__img:hover {
-    opacity: 0.7;
-  }

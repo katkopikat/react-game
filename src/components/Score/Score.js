@@ -1,35 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Tag } from 'antd';
 
-const getResultsfromLS = () => {
-  let res = [];
-  let j = 1;
-  for (let key in localStorage) {
-    if (key.match(/result/)) {
-      let obj = JSON.parse(localStorage.getItem(`result${j}`)); 
-      if (!obj.time.match(/0:00:00/)){  // TO DO!!! ЭТО ВРЕМЕННЫЙ КОСТЫЛЬ
-        res.push(obj);
-        j += 1;
-      }
-    }
-  }
-  return res;
-}
+import getResultsfromLS from './getResultsFromLS';
+import sortResults from './sortResults';
 
-function sortScore(arr){
-  return arr.sort((a, b) => {
-    if (a.time > b.time) return 1;
-    if (a.time < b.time) return -1;
-    return 0;
-  });
-}
 
 export default function Score(){
 
     const [results, setResultsArray] = useState([]);
 
     useEffect(() => {
-      let arrayRes = sortScore(getResultsfromLS());
+      let arrayRes = sortResults(getResultsfromLS());
       if (arrayRes.length === 0) arrayRes.push(
           {
             time: '',
@@ -38,8 +19,8 @@ export default function Score(){
             tags: ['You haven`t results yet']
           }
         )
-      if (arrayRes.length >= 10) arrayRes.length = 10;
 
+      if (arrayRes.length >= 10) arrayRes.length = 10;
       setResultsArray(arrayRes);
     }, [])
     
@@ -84,5 +65,6 @@ export default function Score(){
       <div className="score-wrapper">
         <h1 className="main-heading"> Score </h1>
         <Table columns={columns} dataSource={results} id="score-table"/>
-    </div> )
+    </div> 
+  )
 }

@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-//import './timer.css'
-
 
 export default function Timer (props){
-  
     const { gameStatus, setGameStatus, continueGame, gameIsFinished, difficulty } = props;
 
     let [hours, setTimerHours] = useState(0);
@@ -46,7 +43,6 @@ export default function Timer (props){
         localStorage.removeItem('sudoku');
         localStorage.removeItem('difficulty');
       }
-
     }, [gameIsFinished])
 
     const timerDisplay = () => {
@@ -55,9 +51,9 @@ export default function Timer (props){
         setTimerText(`${hours}:${min}:${sec}`);
     }
   
-      return (
+    return (
         <button className="wrapper-timer">
             <span className="timer">{timerText}</span>
         </button>
-  )
+    )
 }

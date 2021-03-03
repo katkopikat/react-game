@@ -19,22 +19,17 @@ export default function Cell(props){
         setSoundsIsOn(settings.sounds)
     }, [settings])
     
+    useEffect(() => {
+        setValueInCurruentField(parseInt(id), numberValue, errorStatus);
+    }, [numberValue])
+
     const handleClickSound = () => {
-        if(soundsIsOn){
-            playClick();
-        }
+        if (soundsIsOn) playClick();
     };
 
     const handlePressSound = () => {
-        if(soundsIsOn){
-        playPress();
-        }
+        if (soundsIsOn) playPress();
     };
-
-    useEffect(() => {
-        setValueInCurruentField(parseInt(id), numberValue, errorStatus);
-   }, [numberValue])
-
 
     const setColorSelected = (e) =>{
             e.target.classList.add('selected');
@@ -42,7 +37,9 @@ export default function Cell(props){
     
     const setColorUnselected = e =>{
         e.target.className='cell-input'
-        if (errorStatus ==='true' && settings.showError) e.target.classList.add('error');
+        if (errorStatus ==='true' && settings.showError) {
+            e.target.classList.add('error')
+        };
     }
 
     const toggleErrorStatus= cell => {
@@ -55,7 +52,7 @@ export default function Cell(props){
 
     const handleChangeValue = cell => {
         let { value } = cell;
-        let val = value !== '0' && value !== 'e' ? value.slice(0,1) : '';
+        let val = value !== '0' ? value.slice(0,1) : '';
         setUserNumber(val);
         toggleErrorStatus(cell)
     }
@@ -76,11 +73,9 @@ export default function Cell(props){
                             onSelectCell(e.target)
                             handleClickSound();
                             }}
-
           onBlur={ (e) => setColorUnselected(e)}
           onKeyDown={ (e) => { handlePressSound()}}
           onChange={(e) => handleChangeValue(e.target)}
-
           />
-      );
+    );
 }

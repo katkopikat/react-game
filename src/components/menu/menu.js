@@ -8,7 +8,6 @@ import {
   ControlOutlined,
   QuestionOutlined
 } from '@ant-design/icons';
-//import './menu.css'
 
 import checkGameInLS from '../../helpers/checkLS';
 import toggleFullScreen from '../../helpers/toggleFullScreen';
@@ -16,13 +15,8 @@ import toggleFullScreen from '../../helpers/toggleFullScreen';
 export default function  Navigation (){
   const [visible, setVisible] = useState(false);
 
-  const showDrawer = () => {
-    setVisible(true);
-  };
-
-  const onClose = () => {
-    setVisible(false);
-  };
+  const showDrawer = () => { setVisible(true) };
+  const onClose = () => { setVisible(false) };
 
     return (
       <React.Fragment>
@@ -62,12 +56,9 @@ export default function  Navigation (){
         visible={visible}
       >
       <div className="about">
-        <a href="https://github.com/katkopikat"> Made by katkopikat</a>
-
-        <span className="year">2021</span>
-
-        <a className="rs__link" href="https://rs.school/js/">  <img class="logo__img" src="../src/assets/images/rs_logo.png"></img></a>
-
+          <a href="https://github.com/katkopikat"> Made by katkopikat</a>
+          <span className="year">2021</span>
+          <a className="rs__link" href="https://rs.school/js/">  <img class="logo__img" src="../src/assets/images/rs_logo.png"></img></a>
       </div>
       </Drawer>
       </React.Fragment>

@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Cell from '../cell';
-//import './grid.css';
-
-// function BaseGrid(props){
-//     // const baseString = '123000000000070000000000000000000000000000000000080000000000000000000000000000087';
-//     // const startGrid = baseString
-//     //                         .split('')
-//     //                         .filter(x => '0123456789'.includes(x))
-//     //                         .map(x => Number(x))
 
 export default function Grid(props){
     const {startField, finishedGame, settings} = props;
@@ -15,6 +7,7 @@ export default function Grid(props){
     const [selRow, setSelectedRow] = useState(null);
     const [selCol, setSelectedCol] = useState(null);
     const [selSegm, setSelectedSegmnent] = useState(null);
+    const [selSameValue, setSelSameValue] = useState(null);
     const [selectedCell, setSelected] = useState(null);
     const [currentValues, setValues] = useState([]);
     const [currentField, setCurrentField] = useState(startField);
@@ -31,11 +24,14 @@ export default function Grid(props){
     useEffect(() => {
         if(selectedCell){
         if(settings.showSelect) document.querySelectorAll('.sub-selected').forEach(it => it.classList.remove('sub-selected'));
+        if(settings.showEqualValue) document.querySelectorAll('.sub-selected-value').forEach(it => it.classList.remove('sub-selected-value'));
 
           const rowElements = findElementInDOM('x');
           const colElements = findElementInDOM('y');
           const segmElements = findElementInDOM('s');
+          const sameValueElements = findElementInDOM('value');
 
+          setSelSameValue(sameValueElements)
           setSelectedRow(rowElements)
           setSelectedCol(colElements)
           setSelectedSegmnent(segmElements)  
@@ -52,7 +48,12 @@ export default function Grid(props){
            });
        }
        setValues([...new Set(values)])
-   }, [selRow, selCol, selSegm]);
+
+      if(settings.showEqualValue && selectedCell && selectedCell.value){
+        selSameValue.forEach(it => { it.classList.add('sub-selected-value') })
+      }
+
+   }, [selRow]);
 
     const findElementInDOM = (attr) => {
         const findAttr = selectedCell.getAttribute(`${attr}`);

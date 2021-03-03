@@ -24,6 +24,7 @@ function App() {
                                     volumeMusic: 0.5,
                                     showError: true,
                                     showSelect: true,
+                                    showEqualValue: false,
                                     theme: false
                           
   })

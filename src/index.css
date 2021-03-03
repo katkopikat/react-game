@@ -9,6 +9,7 @@
   --section-bg: #d0d4e0;
   --sub-selected:#ffd036;
   --selected: #ffbd36;
+  --sub-selected-value: #abc0e3;
 
   --gradient1: #212327;
   --gradient2: #141d30;
@@ -18,13 +19,10 @@
   --menu-selected: #ffd036;
   --switch-off: rgb(11 23 67 / 37%);
   --switch-bg-checked: #ffd036;
-
   --slider: #ffd036;
   --circles: 0.2;
-
-  --checkbox: ffd036;
-
-
+  --checkbox: #ffd036;
+  --input-default: rgb(97 97 97);
 }
 
 :root[theme='light'] {
@@ -53,6 +51,10 @@
 
   
   --checkbox: #5c83dd52;
+
+  --input-default: rgb(97 97 97);
+
+  --sub-selected-value: #a5cee8;
 }
 
 
@@ -130,6 +132,16 @@ body {
     z-index: 20;
 }
 
+.checkbox-hint-wrapper {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.checkbox-hint-wrapper > .ant-checkbox-wrapper{
+  margin-left: 0;
+}
+
 .ant-checkbox-inner{
     background: var(--checkbox) ;
     border-color: var(--checkbox);
@@ -156,7 +168,7 @@ label > .ant-radio-button-wrapper .ant-radio-button-wrapper-checked .btn-difficu
   text-align: center;
   border: none;
   box-shadow: 7px 7px 5px -5px rgb(34 60 80 / 27%) inset;
-  color: #414141;
+  color: #171717;
   background: #f2f2f2;
   border: 2px solid #ffffff29;
 }
@@ -180,9 +192,15 @@ input[s='2'], input[s='4'], input[s='6'], input[s='8']{
   background-color: var(--sub-selected)!important;
 }
 
+.sub-selected-value {
+  background-color: var(--sub-selected-value)!important;
+}
+
+
 .selected{
   background-color:  var(--selected)!important;
 }
+
 
 :active, :hover, :focus {
   outline: 0;
@@ -190,12 +208,12 @@ input[s='2'], input[s='4'], input[s='6'], input[s='8']{
 }
 
 .error{
-  background-color:var(--error);
+  background-color:var(--error) !important;
 }
 
 
 input:read-only{
-  color: rgb(129, 129, 129);
+  color: var(--input-default)
 }
 
 /* --- CELL END --- */
@@ -216,6 +234,14 @@ input:read-only{
   height: 423px;
   font-size: 25px;
 }
+
+.game-grid-paused{
+  width: 423px;
+  height: 423px;
+  font-size: 25px;
+  opacity: 0.5;
+  pointer-events: none;
+}
 /* --- GAME END  --- */
 
 /* --- MENU START  --- */
@@ -232,7 +258,8 @@ input:read-only{
 }
 
 .ant-btn-primary, .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: var(--menu-selected)
+  /* background-color: var(--menu-selected) */
+  background-color: transparent;
 }
 
 .ant-menu-inline-collapsed > .ant-menu-item .ant-menu-item-icon, .anticon{
@@ -243,10 +270,17 @@ input:read-only{
   background-color: transparent;
 }
 
-.ant-menu-item >span:hover {
+.ant-menu-item:hover, .ant-menu-item >span:hover, .ant-menu-item >svg:hover{
   color: var(--yellow);
 }
 
+.ant-tooltip-inner {
+  color: black;
+  background-color: var(--yellow);
+}
+.ant-tooltip-arrow-content{
+  background-color: var(--yellow)!important;
+}
 /* --- MENU END  --- */
 
 /* --- SCORE START --- */

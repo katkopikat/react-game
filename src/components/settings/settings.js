@@ -1,8 +1,6 @@
 import React  from 'react';
 import { Checkbox, Switch, Slider } from 'antd';
 
-//import './settings.css'
-
 export default function Settings(props){
     const { handleSetSettings, settings } = props;
 
@@ -33,6 +31,7 @@ export default function Settings(props){
                         checked={settings.theme}
                         />
 
+                <div className="checkbox-hint-wrapper">
                 <h4> Game hints </h4>
                 <Checkbox onChange={ (e) => handleSetSettings ({...settings, showError : e.target.checked })}
                         className="checkbox-hint"
@@ -45,6 +44,13 @@ export default function Settings(props){
                         checked={settings.showSelect}> 
                         Show select hint?
                 </Checkbox>
+
+                <Checkbox onChange={ (e) => handleSetSettings ({...settings, showEqualValue: e.target.checked })}
+                        className="checkbox-hint"
+                        checked={settings.showEqualValue}> 
+                        Color cells with equal value?
+                </Checkbox>
+                </div>
             </div>
         </div>
     )

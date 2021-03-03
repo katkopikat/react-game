@@ -53,15 +53,13 @@ export default function Cell(props){
         }
     }
 
-    const pressNumber = e => {  
-        let val = e.target.value[0]
-        setUserNumber(val);
-    }
-
     const handleChangeValue = cell => {
-        setUserNumber(cell.value.slice(0,1));
+        let { value } = cell;
+        let val = value !== '0' && value !== 'e' ? value.slice(0,1) : '';
+        setUserNumber(val);
         toggleErrorStatus(cell)
     }
+
     return (
           <input
           type="number"
@@ -80,8 +78,7 @@ export default function Cell(props){
                             }}
 
           onBlur={ (e) => setColorUnselected(e)}
-          onKeyDown={ (e) => { pressNumber(e);
-                               handlePressSound()}}
+          onKeyDown={ (e) => { handlePressSound()}}
           onChange={(e) => handleChangeValue(e.target)}
 
           />

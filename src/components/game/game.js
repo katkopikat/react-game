@@ -3,8 +3,6 @@ import Grid from '../grid'
 import Timer from '../timer';
 import WinMessage from '../win-message'
 import randomGeneratedField from '../grid/randomGenerated';
-//import './game.css'
-
 
 export default function Game(props) {
   const { continueGame, difficulty, settings } = props;
@@ -12,7 +10,6 @@ export default function Game(props) {
   const [startField, setStartField] = useState([]); 
   const [gameStatus, setGameStatus] = useState('non-started'); 
   // not-startded --> process --> paused --> finished 
-  
 
     const generateStartField = () => {
       let arr;
@@ -33,7 +30,15 @@ export default function Game(props) {
 
     useState(() => {
       generateStartField();
-      localStorage.setItem('difficulty', `${!continueGame ? difficulty : localStorage.getItem('difficulty')}`)
+      // TO DO! ОБРАБОТАТЬ СЛОЖНОСТЬ В LS - КОСТЫЛЬ
+      let LSDiffuculty = localStorage.getItem('difficulty');
+      let difficultyFromLS = LSDiffuculty && LSDiffuculty !== 'undefined'? localStorage.getItem('difficulty') : 'medium';
+
+      localStorage.setItem('difficulty', `${!continueGame && difficulty ? difficulty : difficultyFromLS}`)
+
+      // window.onstorage = event => {
+      //   console.log(event.url);
+      // };
     }, [])
 
     const toggleStatusGame = () => {
@@ -61,7 +66,7 @@ export default function Game(props) {
                      difficulty={difficulty}
               />
           </div>
-          <div className="game-grid">
+          <div className={gameStatus === 'paused'? 'game-grid-paused' : 'game-grid'}>
               <Grid startField={startField} 
                     finishedGame={finishedGame}
                     difficulty={difficulty}

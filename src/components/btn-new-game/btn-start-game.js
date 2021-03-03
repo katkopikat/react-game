@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import Difficulty from '../btns-difficulty';
-
-import './btn-start-game.css'
+// import './btn-start-game.css'
 
 export default function NewGameBtn(){
 

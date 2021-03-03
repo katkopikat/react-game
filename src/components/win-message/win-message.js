@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 //import '../score/node_modules/antd/dist/antd.css';
 import { Result } from 'antd';
 import NewGameBtn from '../btn-new-game';
-import './win-message.css'
+//import './win-message.css'
 
 export default function WinMessage(){
 

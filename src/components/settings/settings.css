@@ -7,8 +7,8 @@
     box-shadow: 3px 5px 16px 2px rgb(0 0 0 / 20%) inset;
 }
 
-.settings-wrapper > h1 {
-    color: #e9bf36;
+.settings > h1 {
+    color: white;
 }
 
 .settings-wrapper > h3 {
@@ -22,18 +22,18 @@
 }
 
 .settings-wrapper >  .ant-switch-checked {
-    background-color: #e9bf36;
+    background-color: var(--yellow);
 }
 
 
 .settings-wrapper > .ant-slider-track {
-    background-color: #e9bf36;
+    background-color: var(--yellow);
 }
 
 .settings-wrapper >  .ant-slider-handle:focus {
-    border-color: #e9bf36;
+    border-color: var(--yellow);
 }
 
 .settings-wrapper > .ant-slider-handle {
-    border: solid 2px #e9bf36;
+    border: solid 2px var(--yellow);
 }

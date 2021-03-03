@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Tag } from 'antd';
 //import 'antd/dist/antd.css';
-import './score.css'
+//import './score.css'
 
 
 const getResultsfromLS = () => {
@@ -83,5 +83,9 @@ export default function Score(){
         },
     ];
       
-    return(<Table columns={columns} dataSource={results} id="score-table"/>)
+    return ( 
+      <div className="score-wrapper">
+        <h1 className="main-heading"> Score </h1>
+        <Table columns={columns} dataSource={results} id="score-table"/>
+    </div> )
 }

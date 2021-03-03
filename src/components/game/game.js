@@ -3,7 +3,7 @@ import Grid from '../grid'
 import Timer from '../timer';
 import WinMessage from '../win-message'
 import randomGeneratedField from '../grid/randomGenerated';
-import './game.css'
+//import './game.css'
 
 
 export default function Game(props) {
@@ -47,6 +47,7 @@ export default function Game(props) {
 
     return (
         <div className="wrapper-game">
+           <h1 className="main-heading"> Let`s Sudoku! </h1>
            <div className="wrapper-pause-timer">
               <button className="pause-btn"
                       onClick={ () => toggleStatusGame()}>

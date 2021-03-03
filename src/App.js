@@ -21,12 +21,15 @@ function App() {
                                     volumeSounds: 0.5,
                                     volumeMusic: 0.5,
                                     showHints: true,
+                                    theme: false
                           
   })
+
   const [play, { stop }] = useSound(mainSound, { volume: settings.volumeMusic});
 
   useEffect(() => { settings.music ? play() : stop() }, [settings.music])
- 
+  useEffect(() => { document.documentElement.setAttribute('theme', (settings.theme ? 'light' : 'dark'))}, [settings.theme])
+
   const handleSetSettings = (obj) => { setSettings(obj) }
   const checkIsContinue = (value) => { setContinueGame(value)}
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './cell.css'
+//import './cell.css'
 
 import useSound from 'use-sound';
 import clickSound from '../../assets/sounds/soundClick.wav'
@@ -13,13 +13,14 @@ export default function Cell(props){
     const [soundsIsOn, setSoundsIsOn] = useState(settings.sounds);
 
     const [playClick] = useSound(clickSound, { volume: settings.volumeSounds});
+    const [playPress] = useSound(pressSound, { volume: volumeSound });
 
     useEffect(() => {
         setVolumeSounds(settings.volumeSounds);
         setSoundsIsOn(settings.sounds)
     }, [settings])
     
-    const [playPress] = useSound(pressSound, { volume: volumeSound });
+  
 
     const handleClickSound = () => {
         if(soundsIsOn){

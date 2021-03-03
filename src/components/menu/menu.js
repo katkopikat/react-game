@@ -7,7 +7,7 @@ import {
   FullscreenOutlined,
   ControlOutlined
 } from '@ant-design/icons';
-import './menu.css'
+//import './menu.css'
 
 import checkGameInLS from '../../helpers/checkLS';
 import toggleFullScreen from '../../helpers/toggleFullScreen';

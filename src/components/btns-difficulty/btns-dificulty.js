@@ -1,6 +1,6 @@
 import React from 'react';
 //import '../node_modules/antd/dist/antd.css';
-import './btns-dificulty.css'
+//import './btns-dificulty.css'
 import { Radio } from 'antd';
 
  export default function Difficulty(props){

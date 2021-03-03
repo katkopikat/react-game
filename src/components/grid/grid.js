@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cell from '../cell';
-import './grid.css';
+//import './grid.css';
 
 // function BaseGrid(props){
 //     // const baseString = '123000000000070000000000000000000000000000000000080000000000000000000000000000087';

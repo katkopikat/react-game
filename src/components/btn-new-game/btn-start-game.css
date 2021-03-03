@@ -1,5 +1,5 @@
 .new-game-btn, .pause-btn, .wrapper-timer, .difficulty-btn {
-    border: 2px solid #e9bf36;
+    border: 2px solid var(--yellow);
     text-transform: none;
     height: 32px;
     font-size: 18px;
@@ -8,7 +8,8 @@
     outline: none;
     cursor: pointer;
     padding-bottom: 4px;
-    color: #e9bf36;
+    /* color: var(--yellow); */
+    color: var(--yellow);
     margin-bottom: 10px;
     line-height: 1.3;
 }

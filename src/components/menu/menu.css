@@ -11,7 +11,7 @@
 }
 
 .ant-btn-primary, .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: #e9bf36;
+    background-color: var(--yellow);
 }
 
 .ant-menu-inline-collapsed > .ant-menu-item .ant-menu-item-icon, .anticon{
@@ -23,5 +23,5 @@
 }
 
 .ant-menu-item >span:hover {
-    color: #e9bf36;
+    color: var(--yellow);
 }

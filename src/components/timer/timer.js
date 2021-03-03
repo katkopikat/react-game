@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './timer.css'
+//import './timer.css'
 
 
 export default function Timer (props){

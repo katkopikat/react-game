@@ -6,7 +6,8 @@ import {
   BarChartOutlined,
   FullscreenOutlined,
   ControlOutlined,
-  QuestionOutlined
+  QuestionOutlined,
+  FullscreenExitOutlined
 } from '@ant-design/icons';
 
 import checkGameInLS from '../../helpers/checkLS';
@@ -14,6 +15,7 @@ import toggleFullScreen from '../../helpers/toggleFullScreen';
 
 export default function  Navigation (){
   const [visible, setVisible] = useState(false);
+  const [fullScreen, setFullScreen] = useState(false);
 
   const showDrawer = () => { setVisible(true) };
   const onClose = () => { setVisible(false) };
@@ -42,11 +44,14 @@ export default function  Navigation (){
                 <Link to="/settings" />
               </Menu.Item>
 
-              <Menu.Item key="fullscreen" icon={<FullscreenOutlined />} onClick={() => toggleFullScreen()}>
-                Fullscreen
+              <Menu.Item key="fullscreen"
+                         icon={ fullScreen ? <FullscreenExitOutlined /> : <FullscreenOutlined /> } 
+                         onClick={() => {toggleFullScreen();
+                                         setFullScreen(!fullScreen)}}>
+                         Fullscreen
               </Menu.Item>
               
-              <Menu.Item key="about" icon={ <QuestionOutlined />} onClick={showDrawer}>
+              <Menu.Item key="about" icon={ <QuestionOutlined /> } onClick={showDrawer}>
                 Developer
               </Menu.Item>
             </Menu>
@@ -60,11 +65,22 @@ export default function  Navigation (){
             visible={visible}
           >
             <div className="about">
-                <a href="https://github.com/katkopikat"> Made by katkopikat</a>
-                <span className="year">2021</span>
-                <a className="rs__link" href="https://rs.school/js/">  
-                    <img class="logo__img" src="../src/assets/images/rs_logo.png"></img>
-                </a>
+                <div className='wrapper-made'>
+                <a href="https://rs.school/js/"> <img className="logo" src="static/images/rs_logo.png" alt="logo"></img> </a>
+                  <a href="https://github.com/katkopikat" className="made-by">katkopikat </a>
+                  <span> 2021 </span>
+                </div>
+                <div className="keys">
+                    <p className="keys__title">Hot keys</p>
+                    <p className="keys__descr"><kbd>Q</kbd>New game</p>
+                    <p className="keys__descr"><kbd>W</kbd>Settings</p>
+                    <p className="keys__descr"><kbd>E</kbd>Score</p>
+                    <p className="keys__descr"><kbd>R</kbd>ON/OFF music</p>
+                    <p className="keys__descr"><kbd>T</kbd>ON/OFF sounds</p>
+                    {/* <p className="keys__descr"><kbd>Q</kbd>Show/hide selected row, col and section</p>
+                    <p className="keys__descr"><kbd>W</kbd>On/off colored cells with equal value</p>
+                    <p className="keys__descr"><kbd>E</kbd>On/off colored cells with conflicts</p> */}
+                </div>
             </div>
           </Drawer>
       </React.Fragment>

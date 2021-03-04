@@ -3,6 +3,7 @@
   --bg-color: #212327;
   --black: black;
   --white: white;
+  --white-black: white;
   --overlay: #242531;
   --error: #ffaabf;
   --section-bg: #d0d4e0;
@@ -19,6 +20,7 @@
   --slider: #ffd036;
   --circles: 0.2;
   --checkbox: #ffd036;
+  --checkbox-checked:#da9610;
   --input-default: rgb(97 97 97);
 }
 
@@ -27,6 +29,7 @@
   --bg-color: #e2e2e2;
   --black: black;
   --white: white;
+  --white-black: black;
   --overlay: white;
   --error: #ecaee9;
   --section-bg: #d0d4e0;
@@ -44,6 +47,7 @@
   --checkbox: #5c83dd52;
   --input-default: rgb(97 97 97);
   --sub-selected-value: #a5cee8;
+  --checkbox-checked:#5c83dd;
 }
 
 
@@ -76,6 +80,10 @@ body {
   margin-bottom: 10px;
   line-height: 1.3;
   margin: 10px;
+}
+
+.new-game-btn:hover, .pause-btn:hover{
+  color: var(--white-black);
 }
 
 .difficulty-btn{
@@ -121,6 +129,10 @@ body {
     z-index: 20;
 }
 
+.ant-radio-button-wrapper:hover {
+  color: var(--white-black);
+}
+
 .checkbox-hint-wrapper {
   display: flex;
   flex-direction: column;
@@ -136,6 +148,11 @@ body {
     border-color: var(--checkbox);
 }
 
+.ant-checkbox-checked .ant-checkbox-inner, .ant-slider-handle .ant-tooltip-open{
+  background-color: var(--checkbox-checked);
+  border-color: var(--checkbox-checked);
+}
+
 .checkbox-hint{
     color: var(--white);
     font-size: 16px;
@@ -146,6 +163,8 @@ label > .ant-radio-button-wrapper .ant-radio-button-wrapper-checked .btn-difficu
     border-color: var(--yellow) !important;
     color: var(--black);
 }
+
+
 /* --- BUTTONS END --- */
 
 /* --- CELL START --- */
@@ -539,3 +558,66 @@ input:read-only{
     font-size: 22px;
   }
   
+  
+  /* --- ABOUT START --- */
+  .ant-drawer-body {
+    background: var(--switch-bg-checked);
+  }
+
+  .logo{
+    height: 30px;
+  }
+
+  .made-by {
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .about {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .about > span {
+  font-size: 16px;
+  font-style: italic;
+}
+
+.wrapper-made {
+  display: flex;
+  flex-direction: column;
+}
+
+.keys__title {
+    color: #14161e;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .keys__descr {
+    display: flex;
+    align-items: center;
+    column-gap: 0.3rem;
+    font-style: italic;
+  }
+
+  kbd {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    margin: 3px;
+    border-radius: 0.3rem;
+    font-size: 16px;
+    font-style: normal;
+    color: var(--black);
+    background: var(--white);
+    user-select: none;
+    box-shadow: -5px -5px 5px -5px rgb(34 60 80 / 60%) inset;
+  }

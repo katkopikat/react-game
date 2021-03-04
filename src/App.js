@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch, useHistory } from 'react-router-dom';
 import useSound from 'use-sound';
 
 import Navigation from './components/menu/menu';
@@ -14,6 +14,7 @@ import mainSound from './assets/sounds/main.mp3'
 import './App.css';
 
 function App() {
+  let history = useHistory();
   const [continueGame, setContinueGame] = useState(false);
   const [settings, setSettings] = useState({
                                     sounds: false,
@@ -25,8 +26,56 @@ function App() {
                                     showEqualValue: false,
                                     theme: false
   })
-
+  
   const [play, { stop }] = useSound(mainSound, { volume: settings.volumeMusic, loop: true});
+  const [ keyPressed, setKeyPressed ] = useState(null);
+
+
+  useEffect(() => { 
+    document.addEventListener('keydown', (e) => {
+      setKeyPressed(e)
+    })
+  }, [])
+
+  useEffect(() => { 
+    if(keyPressed){
+      if (keyPressed.code === 'KeyQ') {
+        keyPressed.preventDefault();
+        history.push('/new-game')
+      }
+      if (keyPressed.code   === 'KeyW') {
+        keyPressed.preventDefault();
+        history.push('/settings')
+      }
+      if (keyPressed.code  === 'KeyE') {
+        keyPressed.preventDefault();
+        history.push('/score')
+      }
+      if (keyPressed.code  === 'KeyR') {
+        keyPressed.preventDefault();
+        handleSetSettings({...settings, music : !settings.music} )
+      }
+      if (keyPressed.code  === 'KeyT') {
+        keyPressed.preventDefault();
+        handleSetSettings({...settings, sounds : !settings.sounds} )
+      }
+      // if (keyPressed.code  === 'KeyQ') {
+      //   keyPressed.preventDefault();
+      //   handleSetSettings({...settings, showSelect : !settings.showSelect} )
+      // }
+      // if (keyPressed.code  === 'KeyW') {
+      //   keyPressed.preventDefault();
+      //   handleSetSettings({...settings, showEqualValue : !settings.showEqualValue} )
+      // }
+      // if (keyPressed.code  === 'KeyE') {
+      //   keyPressed.preventDefault();
+      //   handleSetSettings({...settings, showError : !settings.showError} )
+      // }
+    }
+
+  }, [keyPressed])
+
+
 
   useEffect(() => { settings.music ? play() : stop() }, [settings.music])
   useEffect(() => { document.documentElement.setAttribute('theme', (settings.theme ? 'light' : 'dark'))}, [settings.theme])
@@ -37,7 +86,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Router>
+  
         <Navigation />
         <Switch>
             <Redirect from='/' to={ checkGameInLS() ? '/load-game' : '/new-game'} exact={true} />
@@ -47,7 +96,7 @@ function App() {
             <Route path="/score" component={Score} />
             <Route path="/settings" render={ () => <Settings handleSetSettings={handleSetSettings} settings={settings}/> }/>
             </Switch>
-      </Router>
+
       </header>
     </div>
   );

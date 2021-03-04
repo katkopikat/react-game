@@ -197,8 +197,10 @@
   font-size: 22px;
 }
 
-:-webkit-full-screen .App-header{ 
-  transform: scale(1.5);
+:-webkit-full-screen .wrapper-game, 
+:-webkit-full-screen .wrapper-difficulty-btns,
+:-webkit-full-screen .settings { 
+  transform: scale(1.3);
 }
 
 
@@ -206,8 +208,3 @@
   overflow-y: hidden;
   overflow-x: hidden;
 }
-
-/* 
-#root:-moz-full-screen {
-  background: red;
-} */

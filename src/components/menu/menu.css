@@ -1,0 +1,27 @@
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    text-align: left;
+}
+
+.menu-btn {
+    width: auto;
+}
+
+.ant-btn-primary, .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: var(--yellow);
+}
+
+.ant-menu-inline-collapsed > .ant-menu-item .ant-menu-item-icon, .anticon{
+    font-size: 22px;
+}
+
+.ant-menu.ant-menu-dark {
+    background-color: transparent;
+}
+
+.ant-menu-item >span:hover {
+    color: var(--yellow);
+}

@@ -1,0 +1,55 @@
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover,
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):checked{
+    font-weight: 500;
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--black);
+}
+
+.btn-difficulty > .ant-radio-button-checked:hover{
+    border-color: var(--yellow);
+    color: white;
+}
+
+
+.ant-radio-button-inner{
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--black);
+}
+
+.ant-radio-button-wrapper {
+    position: relative;
+    display: inline-block;
+    height: 32px;
+    margin: 0;
+    padding: 0 20px;
+    font-size: 18px;
+    line-height: 1.5;
+    border: 2px solid var(--yellow);
+    color:var(--yellow);
+    background-color: transparent;
+    border-top-width: 2px;
+    border-left-width: 2px;
+    cursor: pointer;
+    margin: 10px;
+    z-index: 20;
+}
+
+.ant-checkbox-input:focus + .ant-checkbox-inner{
+    background: var(--yellow) ;
+    border-color: var(--yellow);
+}
+
+.checkbox-hint{
+    color: white;
+    font-size: 16px;
+}
+
+label > .ant-radio-button-wrapper .ant-radio-button-wrapper-checked .btn-difficulty {
+    background-color: var(--yellow);
+    border-color: var(--yellow) !important;
+    color: var(--black);
+}

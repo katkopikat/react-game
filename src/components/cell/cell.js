@@ -24,11 +24,15 @@ export default function Cell(props){
     }, [numberValue])
 
     const handleClickSound = () => {
-        if (soundsIsOn) playClick();
+        if (soundsIsOn) {
+            playClick();
+        }
     };
 
     const handlePressSound = () => {
-        if (soundsIsOn) playPress();
+        if (soundsIsOn){
+            playPress();
+        }
     };
 
     const setColorSelected = (e) =>{
@@ -39,7 +43,7 @@ export default function Cell(props){
         e.target.className='cell-input'
         if (errorStatus ==='true' && settings.showError) {
             e.target.classList.add('error')
-        };
+        }
     }
 
     const toggleErrorStatus= cell => {
@@ -57,6 +61,12 @@ export default function Cell(props){
         toggleErrorStatus(cell)
     }
 
+    const handleFocus = e => {
+        setColorSelected(e);
+        onSelectCell(e.target)
+        handleClickSound();
+    }
+
     return (
           <input
           type="number"
@@ -69,12 +79,9 @@ export default function Cell(props){
           key={id}
           value={String(numberValue)}
           readOnly={readOnly}
-          onFocus={ (e) => {setColorSelected(e);
-                            onSelectCell(e.target)
-                            handleClickSound();
-                            }}
+          onFocus={ (e) => { handleFocus(e) }}
           onBlur={ (e) => setColorUnselected(e)}
-          onKeyDown={ (e) => { handlePressSound()}}
+          onKeyDown={ () => { handlePressSound()}}
           onChange={(e) => handleChangeValue(e.target)}
           />
     );

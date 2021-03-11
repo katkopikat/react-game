@@ -9,15 +9,14 @@ export default function Game(props) {
   const [gameIsFinished, setGameIsFinished] = useState(false);
   const [startField, setStartField] = useState([]); 
   const [gameStatus, setGameStatus] = useState('non-started'); 
-  // not-startded --> process --> paused --> finished 
 
     const generateStartField = () => {
       let arr;
       if (continueGame) {
-        for (let key in localStorage) {
+        for (const key in localStorage) {
           if (key.match(/sudoku/)) {
-            let temp1= JSON.parse(localStorage.getItem('sudoku'));
-            arr = [...temp1.currentField];
+            const savedGame= JSON.parse(localStorage.getItem('sudoku'));
+            arr = [...savedGame.currentField];
           } 
         }
       } else if (!continueGame) {
@@ -29,23 +28,29 @@ export default function Game(props) {
     };
 
     useState(() => {
-        generateStartField();
-        // TO DO! ОБРАБОТАТЬ СЛОЖНОСТЬ В LS - КОСТЫЛЬ
-        let diffucultyLS = localStorage.getItem('difficulty');
-        let difficultyFromLS = diffucultyLS && diffucultyLS !== 'undefined'? localStorage.getItem('difficulty') : 'medium';
-  
-        localStorage.setItem('difficulty', `${!continueGame && difficulty ? difficulty : difficultyFromLS}`);
+          generateStartField();
+          // TO DO! ОБРАБОТАТЬ СЛОЖНОСТЬ В LS - КОСТЫЛЬ
+          let diffucultyLS = localStorage.getItem('difficulty');
+          let difficultyFromLS = diffucultyLS && diffucultyLS !== 'undefined' ? diffucultyLS : 'medium';
+    
+          localStorage.setItem('difficulty', `${!continueGame && difficulty ? difficulty : difficultyFromLS}`);
+
     }, [])
 
     const toggleStatusGame = () => {
-        if(gameStatus === 'process') setGameStatus('paused');
-        else if(gameStatus === 'paused') setGameStatus('process');
-        else setGameStatus('paused');
-    }
+        if (gameStatus === 'process') {
+          setGameStatus('paused');
+        } else if (gameStatus === 'paused') {
+          setGameStatus('process');
+        } else {
+          setGameStatus('paused');
+        }
+      }
 
-    const finishedGame = (status) => { setGameIsFinished(status)}
+    const finishedGame = (status) => { setGameIsFinished(status) }
 
     return (
+      <React.Fragment>
         <div className="wrapper-game">
            <h1 className="main-heading"> Let`s Sudoku! </h1>
            <div className="wrapper-pause-timer">
@@ -60,14 +65,15 @@ export default function Game(props) {
                      difficulty={difficulty}
               />
           </div>
-          <div className={gameStatus === 'paused'? 'game-grid-paused' : 'game-grid'}>
+           <div className={gameStatus === 'paused'? 'game-grid-paused' : 'game-grid'}>
               <Grid startField={startField} 
                     finishedGame={finishedGame}
                     difficulty={difficulty}
                     settings={settings}
               />
           </div> 
-          {gameIsFinished? <WinMessage/> : null}
-      </div>
+         </div>
+      {gameIsFinished? <WinMessage /> : null}
+      </React.Fragment>
     );
   }

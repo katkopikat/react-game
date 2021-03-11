@@ -15,8 +15,11 @@ export default function NewGame(props){
   
     return(
         <div className="game-wrapper">
-           {startNemGame ? null : <Difficulty onChooseDifficulty={onChooseDifficulty}/>}
-           {startNemGame ? <Game difficulty={difficulty} settings={settings}/> : null} 
+           {
+           startNemGame 
+                ? <Game difficulty={difficulty} settings={settings} /> 
+                : <Difficulty onChooseDifficulty={onChooseDifficulty} />
+           }
         </div>
     )
 }

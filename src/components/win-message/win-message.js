@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 
 export default function WinMessage(){
 
-    return(
-        <div>
+    return (
+        <div className="message">
             <div className="message-wrapper">
                 <div className="win-message">
                     <div className="icon-animation">
-                        <span className="icon-animation-text"/>
+                        <span className="icon-animation-text" />
                     </div>
                     <Result
                     title="You win!"
@@ -18,11 +18,11 @@ export default function WinMessage(){
                     >
                     </Result>
                     <Link exact={'true'} to="/" >
-                        < NewGameBtn />
+                        <NewGameBtn />
                     </Link>
+                     </div>
                 </div>
-            </div>
-        <div className="overlay"/>
-    </div>
+            <div className="overlay" />
+        </div>
     )
 }

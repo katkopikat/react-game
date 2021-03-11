@@ -10,7 +10,7 @@ export default function LoadGame(props){
             <h1 className="main-heading"> Let`s Sudoku! </h1>
             <div className="wrapper-loaded-game">
                 <h3 className="sub-heading"> You have don`t finished game. Do you want continue or start new?</h3>
-                <LoadGameBtn checkIsContinue={props.checkIsContinue}/>
+                <LoadGameBtn checkIsContinue={props.checkIsContinue} />
                 <Link to="/new-game">
                     <NewGameBtn />
                 </Link>

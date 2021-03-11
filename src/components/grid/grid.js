@@ -20,32 +20,39 @@ export default function Grid(props){
     },[currentField]);
     
     useEffect(() => {
-        if(selectedCell){
-        if(settings.showSelect) document.querySelectorAll('.sub-selected')
-                                        .forEach(it => it.classList.remove('sub-selected'));
+        if (selectedCell){
+            if (settings.showSelect) {
+                document.querySelectorAll('.sub-selected')
+                        .forEach(it => it.classList.remove('sub-selected'));
+                        }
+            if (settings.showEqualValue) {
+                document.querySelectorAll('.sub-selected-value')
+                        .forEach(it => it.classList.remove('sub-selected-value'));
+                        }
+                
+            const rowElements = findElementInDOM('x');
+            const colElements = findElementInDOM('y');
+            const segmElements = findElementInDOM('s');
+            const sameValueElements = findElementInDOM('value');
 
-        if(settings.showEqualValue) document.querySelectorAll('.sub-selected-value')
-                                             .forEach(it => it.classList.remove('sub-selected-value'));
-
-          const rowElements = findElementInDOM('x');
-          const colElements = findElementInDOM('y');
-          const segmElements = findElementInDOM('s');
-          const sameValueElements = findElementInDOM('value');
-
-          setSelSameValue(sameValueElements)
-          setSelectedRow(rowElements)
-          setSelectedCol(colElements)
-          setSelectedSegmnent(segmElements)  
+            setSelSameValue(sameValueElements)
+            setSelectedRow(rowElements)
+            setSelectedCol(colElements)
+            setSelectedSegmnent(segmElements)  
         }
     }, [selectedCell]);
 
 
     useEffect(() => {
        let values = [];
-       if(selRow){
+       if (selRow){
          [...selRow, ...selCol, ...selSegm].forEach(it => {
-             if (settings.showSelect) it.classList.add('sub-selected');
-             if (it.value) values.push(it.value);
+             if (settings.showSelect) {
+                 it.classList.add('sub-selected');
+                }
+             if (it.value) {
+                 values.push(it.value);
+                }
            });
        }
 
@@ -75,7 +82,7 @@ export default function Grid(props){
         let isFinishGame = currentField.filter((el) => { return el.error === 'true' || !el.value}).length;
         if (!isFinishGame){ 
             finishedGame(true);
-        };
+        }
     }
 
     return ( 

@@ -4,7 +4,6 @@
   --black: black;
   --white: white;
   --white-black: white;
-  --overlay: #242531;
   --error: #ffaabf;
   --section-bg: #d0d4e0;
   --sub-selected:#ffd036;
@@ -22,6 +21,7 @@
   --checkbox: #ffd036;
   --checkbox-checked:#da9610;
   --input-default: rgb(97 97 97);
+  --overlay: #242531;
 }
 
 :root[theme='light'] {
@@ -30,7 +30,6 @@
   --black: black;
   --white: white;
   --white-black: black;
-  --overlay: white;
   --error: #ecaee9;
   --section-bg: #d0d4e0;
   --sub-selected: rgb(187 197 239);
@@ -48,6 +47,7 @@
   --input-default: rgb(97 97 97);
   --sub-selected-value: #a5cee8;
   --checkbox-checked:#5c83dd;
+  --overlay: #5c83dd;
 }
 
 
@@ -228,7 +228,7 @@ input:read-only{
 }
 
 .wrapper-game{
-  z-index: 100;
+  z-index: 10;
 }
 
 .game-grid{
@@ -251,8 +251,9 @@ input:read-only{
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 1000;
   text-align: left;
+  width: 256px;
 }
 
 .menu-btn {

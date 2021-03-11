@@ -36,9 +36,18 @@ export default function Timer (props){
         }
       }
 
-      if(gameIsFinished) {
+      if (gameIsFinished) {
         setGameStatus('finished')
-        localStorage.setItem(`result${i+1}`, JSON.stringify({time: timerText, tags: [difficulty || localStorage.getItem('difficulty')], date: new Date(), key: i+1}))
+        localStorage.setItem(`result${i+1}`, JSON.stringify(
+                                            { 
+                                              time: timerText,
+                                              tags: [difficulty || localStorage.getItem('difficulty')],
+                                              date: new Date(),
+                                              key: i + 1
+                                            }
+                                          )
+                                        )
+
         localStorage.removeItem('timer')
         localStorage.removeItem('sudoku');
         localStorage.removeItem('difficulty');

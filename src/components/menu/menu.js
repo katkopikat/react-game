@@ -17,41 +17,35 @@ export default function  Navigation (){
   const [visible, setVisible] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
 
-  const showDrawer = () => { setVisible(true) };
-  const onClose = () => { setVisible(false) };
+  const showDrawer = (value) => { setVisible(value) };
 
     return (
       <React.Fragment>
-          <div style={{ width: 256 }} className="menu">
+          <div className="menu">
             <Menu
                 defaultOpenKeys={['sub1']}
                 mode="inline"
                 theme="dark"
                 inlineCollapsed={true}>
-
               <Menu.Item key="new-game" icon={<RightSquareOutlined />}>
                 <Link to={() => checkGameInLS() ? '/load-game' : '/new-game'}/>
                 Game
               </Menu.Item>
-
               <Menu.Item key="score" icon={<BarChartOutlined />}>
                 <Link to="/score" />
                 Score
               </Menu.Item>
-
               <Menu.Item key="settings" icon={<ControlOutlined />}>
                 Settings
                 <Link to="/settings" />
               </Menu.Item>
-
               <Menu.Item key="fullscreen"
                          icon={ fullScreen ? <FullscreenExitOutlined /> : <FullscreenOutlined /> } 
                          onClick={() => {toggleFullScreen();
                                          setFullScreen(!fullScreen)}}>
                          Fullscreen
               </Menu.Item>
-              
-              <Menu.Item key="about" icon={ <QuestionOutlined /> } onClick={showDrawer}>
+              <Menu.Item key="about" icon={ <QuestionOutlined /> } onClick={() => showDrawer(true)}>
                 Developer
               </Menu.Item>
             </Menu>
@@ -61,12 +55,12 @@ export default function  Navigation (){
             title="About"
             placement="right"
             closable={false}
-            onClose={onClose}
+            onClose={() => showDrawer(false)}
             visible={visible}
           >
             <div className="about">
                 <div className='wrapper-made'>
-                <a href="https://rs.school/js/"> <img className="logo" src="static/images/rs_logo.png" alt="logo"></img> </a>
+                <a href="https://rs.school/js/"> <img className="logo" src="static/images/rs_logo.png" alt="logo" /> </a>
                   <a href="https://github.com/katkopikat" className="made-by">katkopikat </a>
                   <span> 2021 </span>
                 </div>

@@ -43,7 +43,7 @@
   }
 }
 
-.main-heading{
+.main-heading {
   color: white;
 }
 
@@ -65,7 +65,7 @@
 	}
 }
 
-.circles{
+.circles {
   position: absolute;
   top: 0;
   left: 0;
@@ -168,20 +168,17 @@
 
 
 @keyframes animate {
-
-  0%{
+  0% {
       transform: translateY(0) rotate(0deg);
       opacity: 1;
       border-radius: 0;
   }
 
-  100%{
+  100% {
       transform: translateY(-1000px) rotate(720deg);
       opacity: 0;
       border-radius: 0;
-
   }
-
 }
 
 .area{
@@ -199,6 +196,7 @@
 
 :-webkit-full-screen .wrapper-game, 
 :-webkit-full-screen .wrapper-difficulty-btns,
+:-webkit-full-screen .message-wrapper
 :-webkit-full-screen .settings { 
   transform: scale(1.3);
 }

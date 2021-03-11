@@ -11,7 +11,8 @@ export default function Score(){
 
     useEffect(() => {
       let arrayRes = sortResults(getResultsfromLS());
-      if (arrayRes.length === 0) arrayRes.push(
+      if (arrayRes.length === 0) {
+        arrayRes.push(
           {
             time: '',
             date: '',
@@ -19,8 +20,12 @@ export default function Score(){
             tags: ['You haven`t results yet']
           }
         )
+      }
 
-      if (arrayRes.length >= 10) arrayRes.length = 10;
+      if (arrayRes.length >= 10) {
+        arrayRes.length = 10;
+        }
+
       setResultsArray(arrayRes);
     }, [])
     

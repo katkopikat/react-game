@@ -35,6 +35,10 @@ function App() {
     document.addEventListener('keydown', (e) => {
       setKeyPressed(e)
     })
+
+    window.addEventListener('unload', () => {
+      history.push('/')
+    })
   }, [])
 
   useEffect(() => { 
@@ -75,8 +79,6 @@ function App() {
 
   }, [keyPressed])
 
-
-
   useEffect(() => { settings.music ? play() : stop() }, [settings.music])
   useEffect(() => { document.documentElement.setAttribute('theme', (settings.theme ? 'light' : 'dark'))}, [settings.theme])
 
@@ -86,7 +88,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-  
         <Navigation />
         <Switch>
             <Redirect from='/' to={ checkGameInLS() ? '/load-game' : '/new-game'} exact={true} />
@@ -96,7 +97,6 @@ function App() {
             <Route path="/score" component={Score} />
             <Route path="/settings" render={ () => <Settings handleSetSettings={handleSetSettings} settings={settings}/> }/>
             </Switch>
-
       </header>
     </div>
   );
